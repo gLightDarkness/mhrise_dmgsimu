@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --host 0.0.0.0",
     "build": "webpack",
-    "deploy": "gh-pages -d dist -r 'https://github.com/gLightDarkness/mhrise_dmgsimu.git'"
+    "deploy": "gh-pages -d public -r 'https://github.com/gLightDarkness/mhrise_dmgsimu.git'"
   },
   "keywords": [],
   "author": "",
