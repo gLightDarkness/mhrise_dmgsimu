@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
 
-class DamageCalcForm extends Component {
+class DropdownTest extends Component {
     constructor(props) {
         super(props);
+        this.state = {value: 'test'};
     }
 
-    handleSubmit(event) {
+    handleChange(event) {
         alert('calc!');
         event.preventDefault();
     }
@@ -22,4 +22,4 @@ class DamageCalcForm extends Component {
     }
 }
 
-export default DamageCalcForm;
+export default DropdownTest;
