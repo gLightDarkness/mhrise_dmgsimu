@@ -1,7 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import DamageCalcForm from './components/damageCalcForm';
 
 ReactDOM.render(
-	<h1>Hello, world!!</h1>,
+	<DamageCalcForm />,
 	document.getElementById('root')
 );
