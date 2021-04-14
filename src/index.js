@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import DamageCalcForm from './components/damageCalcForm';
+import DamageSimulator from './components/damageSimulator';
 
 ReactDOM.render(
-	<DamageCalcForm />,
+	<DamageSimulator />,
 	document.getElementById('root')
 );
