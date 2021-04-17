@@ -9,7 +9,9 @@ class inQuestSetting extends Component {
     render() {
         return (
             <div>
-                ○クエスト中効果
+                <h4>
+                    ○クエスト中効果
+                </h4>
             </div>
         );
     }
