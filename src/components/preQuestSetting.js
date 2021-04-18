@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 
-class ResultArea extends Component {
+class PreQuestSetting extends Component {
     constructor(props) {
         super(props);
     }
@@ -9,10 +9,12 @@ class ResultArea extends Component {
     render() {
         return (
             <div>
-                ○準備効果
+                <h4>
+                    ○準備効果
+                </h4>
             </div>
         );
     }
 }
 
-export default ResultArea;
+export default PreQuestSetting;
