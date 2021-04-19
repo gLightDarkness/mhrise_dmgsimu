@@ -10,3 +10,12 @@ services:
         container_name: mhrise_dmgsimu_node
         ports:
             - "8080:8080"
+    sqlite3:
+        image: nouchka/sqlite3
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./public/data:/root/db/
+            - ./src/data:/tmp/data/
+            - ./bin/in_container/data_import_in_sqlite3.sh:/tmp/bin/data_import.sh
+        container_name: mhrise_dmgsimu_db
