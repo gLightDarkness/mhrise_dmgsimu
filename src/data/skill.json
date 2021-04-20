@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"name": "攻撃",
+		"max_level": 7,
+		"type": 1
+	},
+	{
+		"id": 2,
+		"name": "見切り",
+		"max_level": 7,
+		"type": 1
+	}
+]
