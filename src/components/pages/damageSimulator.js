@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import EquipmentSetting from './equipmentSetting';
-import PreQuestSetting from './preQuestSetting';
-import InQuestSetting from './inQuestSetting';
-import ResultArea from './resultArea';
+import EquipmentSetting from '../organisms/equipmentSetting';
+import PreQuestSetting from '../organisms/preQuestSetting';
+import InQuestSetting from '../organisms/inQuestSetting';
+import ResultArea from '../organisms/resultArea';
 //import PropTypes from 'prop-types';
 
 class DamageSimulator extends Component {
@@ -44,7 +44,6 @@ class DamageSimulator extends Component {
 
     handleEquipmentParamUpdate(params) {
         this.setState({equipmentParams: params});
-        alert(`Update equipment param! weaponType: ${params.weaponType}`);
     }
 
     handlePreQuestParamUpdate(params) {
