@@ -5,7 +5,7 @@
 		"name": "溜め斬りLv1",
 		"value": 48,
 		"element_rate": 1,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -15,7 +15,7 @@
 		"name": "溜め斬りLv2",
 		"value": 77,
 		"element_rate": 1.2,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -25,7 +25,7 @@
 		"name": "溜め斬りLv3",
 		"value": 105,
 		"element_rate": 1.5,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -35,7 +35,7 @@
 		"name": "斬り上げ",
 		"value": 38,
 		"element_rate": 1,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -45,7 +45,7 @@
 		"name": "なぎ払い",
 		"value": 26,
 		"element_rate": 1,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -55,7 +55,7 @@
 		"name": "ジャンプ斬り",
 		"value": 70,
 		"element_rate": 1,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -65,7 +65,7 @@
 		"name": "キック",
 		"value": 5,
 		"element_rate": 0,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -75,7 +75,7 @@
 		"name": "横殴り",
 		"value": 16,
 		"element_rate": 1,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -85,7 +85,7 @@
 		"name": "段差登り中抜刀斬り",
 		"value": 48,
 		"element_rate": 1,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -95,7 +95,7 @@
 		"name": "強溜め斬りLv1",
 		"value": 65,
 		"element_rate": 1.65,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -105,7 +105,7 @@
 		"name": "強溜め斬りLv2",
 		"value": 90,
 		"element_rate": 1.8,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -115,7 +115,7 @@
 		"name": "強溜め斬りLv3",
 		"value": 115,
 		"element_rate": 2.25,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -125,7 +125,7 @@
 		"name": "強なぎ払いLv1",
 		"value": 59,
 		"element_rate": 1.65,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -135,7 +135,7 @@
 		"name": "強なぎ払いLv2",
 		"value": 66,
 		"element_rate": 1.8,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -145,7 +145,7 @@
 		"name": "強なぎ払いLv3",
 		"value": 72,
 		"element_rate": 2.25,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -155,7 +155,7 @@
 		"name": "タックルLv1",
 		"value": 28,
 		"element_rate": 0,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -165,7 +165,7 @@
 		"name": "タックルLv2",
 		"value": 35,
 		"element_rate": 0,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -175,7 +175,7 @@
 		"name": "タックルLv3",
 		"value": 48,
 		"element_rate": 0,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -185,7 +185,7 @@
 		"name": "ガードタックルLv1",
 		"value": 37,
 		"element_rate": 1,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -195,7 +195,7 @@
 		"name": "ガードタックルLv2",
 		"value": 46,
 		"element_rate": 1,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -205,7 +205,7 @@
 		"name": "ガードタックルLv3",
 		"value": 62,
 		"element_rate": 1,
-		"damage_type": 2,
+		"physical_type": 2,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -215,7 +215,7 @@
 		"name": "強薙ぎ払いLv1",
 		"value": 70,
 		"element_rate": 1.82,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -225,7 +225,7 @@
 		"name": "強薙ぎ払いLv2",
 		"value": 45,
 		"element_rate": 1.65,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	},
@@ -235,7 +235,7 @@
 		"name": "強薙ぎ払いLv3",
 		"value": 40,
 		"element_rate": 1.32,
-		"damage_type": 1,
+		"physical_type": 1,
 		"element_id": "",
 		"element_value": ""
 	}
