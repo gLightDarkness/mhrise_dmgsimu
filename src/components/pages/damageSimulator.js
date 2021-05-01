@@ -3,7 +3,6 @@ import EquipmentSetting from '../organisms/equipmentSetting';
 import PreQuestSetting from '../organisms/preQuestSetting';
 import InQuestSetting from '../organisms/inQuestSetting';
 import ResultArea from '../organisms/resultArea';
-//import PropTypes from 'prop-types';
 
 class DamageSimulator extends Component {
     constructor(props) {
@@ -14,21 +13,23 @@ class DamageSimulator extends Component {
                 weaponOffenseValue: 0,
                 weaponCriticalRate: 0,
                 weaponElement1: 0,
-                weaponElement2: 0,
                 weaponElementValue1: 0,
+                weaponElement2: 0,
                 weaponElementValue2: 0,
+
+                // 素の値をベースに上昇させる系。使わないかも
                 addOffenseBaseValue: 0,
-                multiplyOffenseBaseValue: 0,
+                mulOffenseBaseCoeff: 0,
                 addCriticalBaseRate: 0,
                 addElementBaseValue: 0,
-                multiplyElementBaseValue: 0,
+                mulElementBaseCoeff: 0,
             },
             preQuestParams: {
                 addOffenceValue: 0,
             },
             inQuestParams: {
                 addOffenceValue: 0,
-                multiplyOffenceValue: 0,
+                mulOffenceCoeff: 1,
                 addCriticalRate: 0,
                 addElementValue: 0,
                 badConditionWater: false,
@@ -61,7 +62,10 @@ class DamageSimulator extends Component {
                     handleUpdate={(params) => this.handlePreQuestParamUpdate(params)}
                     preQuestParams={this.state.preQuestParams}
                 />
-                <InQuestSetting />
+                <InQuestSetting
+                    handleUpdate={(params) => this.handleInQuestParamUpdate(params)}
+                    inQuestParams={this.state.inQuestParams}
+                />
                 <ResultArea
                     equipmentParams={this.state.equipmentParams}
                     preQuestParams={this.state.preQuestParams}
