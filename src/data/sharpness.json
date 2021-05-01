@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"name": "赤",
+		"physical_rate": 0.5,
+		"element_rate": 0.25
+	},
+	{
+		"id": 2,
+		"name": "橙",
+		"physical_rate": 0.75,
+		"element_rate": 0.5
+	},
+	{
+		"id": 3,
+		"name": "黄",
+		"physical_rate": 1,
+		"element_rate": 0.75
+	},
+	{
+		"id": 4,
+		"name": "緑",
+		"physical_rate": 1.05,
+		"element_rate": 1
+	},
+	{
+		"id": 5,
+		"name": "青",
+		"physical_rate": 1.2,
+		"element_rate": 1.0625
+	},
+	{
+		"id": 6,
+		"name": "白",
+		"physical_rate": 1.32,
+		"element_rate": 1.15
+	}
+]

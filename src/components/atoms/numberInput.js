@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 
 const NumberInput = (props) => {
     return (
-        <input type="number" value={props.value} min={props.min} max={props.max} step={props.step} onChange={props.onChange}/>
+        <input
+            type="number"
+            value={parseInt(props.value)}
+            min={props.min}
+            max={props.max}
+            step={props.step}
+            onChange={props.onChange}
+        />
     );
 }
 NumberInput.propTypes = {
