@@ -24,7 +24,7 @@ class EquipmentSetting extends Component {
     }
 
     onChangeWeaponOffenseValue(value) {
-        this.equipmentParams.weaponOffenseValue = value;
+        this.equipmentParams.weaponOffenseValue = parseInt(value);
         this.handleUpdate(this.equipmentParams);
     }
 

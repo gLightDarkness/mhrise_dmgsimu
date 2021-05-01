@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WeaponType from "../../data/weapon_type.json"
 import Select from '../atoms/select';
 import Label from '../atoms/label';
 import Option from '../atoms/option';
+import Monster from '../../data/monster.json'
 
-const WeaponTypeDropDown = (props) => {
+const MonsterDropdown = (props) => {
     const baseItems = [{ "id": 0, "name": "選択してください" }];
-    const items = baseItems.concat(WeaponType);
+    const items = baseItems.concat(Monster);
 
     return (
         <div>
-            <Label>武器種: </Label>
+            <Label>ターゲット: </Label>
             <Select onChange={(ev) => { props.handleChange(parseInt(ev.target.value)) }}>
                 {items.map((item) =>
                     <Option key={item.id} value={item.id}>
@@ -23,8 +23,8 @@ const WeaponTypeDropDown = (props) => {
     );
 }
 
-WeaponTypeDropDown.propTypes = {
+MonsterDropdown.propTypes = {
     handleChange: PropTypes.func
 }
 
-export default WeaponTypeDropDown;
+export default MonsterDropdown;

@@ -11,8 +11,6 @@ class DamageSimulator extends Component {
         this.state = {
             equipmentParams: {
                 weaponType: 0,
-                skillIds: [],
-                dragonSkillIds: [],
                 weaponOffenseValue: 0,
                 weaponCriticalRate: 0,
                 weaponElement1: 0,
@@ -35,11 +33,9 @@ class DamageSimulator extends Component {
                 addElementValue: 0,
                 badConditionWater: false,
             },
+            skillIds: [],
+            dragonSkillIds: [],
         }
-    }
-
-    handleUpdate() {
-        alert(`handle Update!`);
     }
 
     handleEquipmentParamUpdate(params) {
@@ -54,17 +50,23 @@ class DamageSimulator extends Component {
         this.setState({inQuestParams: params});
     }
 
-    handleEquipmentSettingUpdate() {
-        alert(`handle Update!`);
-    }
-
     render() {
         return (
             <div>
-                <EquipmentSetting handleUpdate={(params) => this.handleEquipmentParamUpdate(params)} equipmentParams={this.state.equipmentParams}/>
+                <EquipmentSetting
+                    handleUpdate={(params) => this.handleEquipmentParamUpdate(params)}
+                    equipmentParams={this.state.equipmentParams}
+                />
+                <PreQuestSetting
+                    handleUpdate={(params) => this.handlePreQuestParamUpdate(params)}
+                    preQuestParams={this.state.preQuestParams}
+                />
                 <InQuestSetting />
-                <PreQuestSetting />
-                <ResultArea equipmentParams={this.state.equipmentParams} preQuestParams={this.preQuestParams} inQuestParams={this.inQuestParams}/>
+                <ResultArea
+                    equipmentParams={this.state.equipmentParams}
+                    preQuestParams={this.state.preQuestParams}
+                    inQuestParams={this.state.inQuestParams}
+                />
             </div>
         );
     }

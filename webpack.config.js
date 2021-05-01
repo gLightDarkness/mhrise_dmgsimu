@@ -24,7 +24,8 @@ module.exports = {
 			use: ["style-loader", "css-loader"]
 		}, {
 			test: /\.json$/,
-			loader: "json-loader"
+			loader: "json-loader",
+			type: "javascript/auto",
 		}, {
 			test: /\.js$/,
 			exclude: /node_modules/,
