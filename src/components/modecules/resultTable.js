@@ -25,10 +25,10 @@ const ResultTable = (props) => {
 
     const offenseBaseValue = props.equipmentParams.weaponOffenseValue;
     const criticalBaseRate = props.equipmentParams.weaponCriticalRate;
-    //let elementType = props.equipmentParams.weaponElement1;
-    //let elementValue = props.equipmentParams.weaponElementValue1;
+    const elementType = props.equipmentParams.weaponElement1;
+    const elementBaseValue = props.equipmentParams.weaponElementValue1;
     let criticalPhysicalDMGRate = 1.25;
-    //let criticalElementDMGRate = 1;
+    let criticalElementDMGRate = 1;
 
     let motion = Motion.filter((m) => {
         return m["id"] == props.motionID;
@@ -51,7 +51,7 @@ const ResultTable = (props) => {
     }
     sharpness = sharpness[0];
     const sharpnessPhysicalRate = sharpness.physical_rate;
-    //const sharpnessElementRate = sharpness.element_rate;
+    const sharpnessElementRate = sharpness.element_rate;
 
     // 攻撃力計算
     let offenseValue = offenseBaseValue;

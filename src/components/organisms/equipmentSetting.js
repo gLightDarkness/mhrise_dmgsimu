@@ -8,17 +8,11 @@ import ElementTypeDropdown from '../modecules/elementTypeDropdown';
 class EquipmentSetting extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            weaponType: 0
-        }
         this.equipmentParams = props.equipmentParams;
         this.handleUpdate = props.handleUpdate;
     }
 
     onChangeWeaponType(type) {
-        this.setState({
-            weaponType: type
-        });
         this.equipmentParams.weaponType = type;
         this.handleUpdate(this.equipmentParams);
     }
@@ -49,7 +43,7 @@ class EquipmentSetting extends Component {
     }
 
     onChangeElementValue1(value) {
-        this.equipmentParams.weaponCriticalRate = value;
+        this.equipmentParams.weaponElementValue1 = value;
         this.handleUpdate(this.equipmentParams);
     }
 
