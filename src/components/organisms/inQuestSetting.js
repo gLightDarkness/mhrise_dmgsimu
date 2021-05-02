@@ -74,6 +74,16 @@ class InQuestSetting extends Component {
         this.calcAddOffenceValue();
     }
 
+    onToggleHomuraButterFly(enable) {
+        this.param.isHomuraButterFly = enable;
+        this.calcAddOffenceValue();
+    }
+
+    onToggleAmikiriDragonFly(enable) {
+        this.param.isAmikiriDragonFly = enable;
+        this.calcAddCriticalRate();
+    }
+
     onSelectPowerDrug(opt) {
         this.param.powerDrugType = parseInt(opt);
         this.calcAddOffenceValue();
@@ -145,6 +155,20 @@ class InQuestSetting extends Component {
                     step={5}
                     onChangeValue={(value) => { this.onUpdateShiranuiSquid(value) }}
                 />
+                <p>
+                    <Label>ホムラチョウ: </Label>
+                    <CheckboxInput
+                        checked={this.param.isHomuraButterFly}
+                        onChange={(ev) => { this.onToggleHomuraButterFly(ev.target.checked) }}
+                    />
+                </p>
+                <p>
+                    <Label>アミキリアカネ: </Label>
+                    <CheckboxInput
+                        checked={this.param.isAmikiriDragonFly}
+                        onChange={(ev) => { this.onToggleAmikiriDragonFly(ev.target.checked) }}
+                    />
+                </p>
             </div>
         );
     }
