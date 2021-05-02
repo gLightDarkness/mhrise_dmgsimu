@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 
 const RangeInput = (props) => {
     return (
-        <div>
-            <input
-                type="range"
-                value={props.value}
-                min={props.min}
-                max={props.max}
-                step={props.step}
-                onChange={props.onChange}
-            />
-        </div>
+        <input
+            type="range"
+            value={props.value}
+            min={props.min}
+            max={props.max}
+            step={props.step}
+            onChange={props.onChange}
+        />
     );
 }
 RangeInput.propTypes = {
