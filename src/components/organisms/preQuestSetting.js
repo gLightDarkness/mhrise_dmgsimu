@@ -52,27 +52,27 @@ class PreQuestSetting extends Component {
                 <h4>
                     ○準備効果
                 </h4>
-                <p>
+                <div>
                     <Label>力の護符: </Label>
                     <CheckboxInput
                         checked={this.param.isPowerAmulet}
                         onChange={(ev) => { this.onTogglePowerAmulet(ev.target.checked) }}
                     />
-                </p>
-                <p>
+                </div>
+                <div>
                     <Label>力の爪: </Label>
                     <CheckboxInput
                         checked={this.param.isPowerClaws}
                         onChange={(ev) => { this.onTogglePowerClaws(ev.target.checked) }}
                     />
-                </p>
-                <p>
+                </div>
+                <div>
                     <Label>お団子短期催眠術: </Label>
                     <CheckboxInput
                         checked={this.param.isHypnosisMeal}
                         onChange={(ev) => { this.onToggleHypnosisMeal(ev.target.checked) }}
                     />
-                </p>
+                </div>
             </div>
         );
     }

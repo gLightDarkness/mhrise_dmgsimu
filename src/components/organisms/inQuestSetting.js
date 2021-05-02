@@ -26,13 +26,13 @@ class InQuestSetting extends Component {
     calcAddOffenceValue() {
         let value = 0;
         value += this.param.soulBirdAddValue;
-        if(this.param.isPowerPowder){
+        if (this.param.isPowerPowder) {
             value += 10;
         }
-        if(this.param.isPowerSeed){
+        if (this.param.isPowerSeed) {
             value += 10;
         }
-        if(this.param.isHomuraButterFly){
+        if (this.param.isHomuraButterFly) {
             value += 25;
         }
 
@@ -42,7 +42,7 @@ class InQuestSetting extends Component {
 
     calcMulOffenceCoeff() {
         let coeff = 1;
-        if(this.param.catSkillType == 1){
+        if (this.param.catSkillType == 1) {
             coeff *= 1.05;
         }
 
@@ -53,10 +53,10 @@ class InQuestSetting extends Component {
     calcAddCriticalRate() {
         let rate = 0;
         rate += this.param.shiranuiSquidAddValue;
-        if(this.param.isAmikiriDragonFly){
+        if (this.param.isAmikiriDragonFly) {
             rate += 50;
         }
-        if(this.param.catSkillType == 2){
+        if (this.param.catSkillType == 2) {
             rate += 30;
         }
 
@@ -113,62 +113,70 @@ class InQuestSetting extends Component {
                 <h4>
                     ○クエスト中効果
                 </h4>
-                <p>
+                <div>
                     <Label>鬼人の粉塵: </Label>
                     <CheckboxInput
                         checked={this.param.isPowerPowder}
                         onChange={(ev) => { this.onTogglePowerPowder(ev.target.checked) }}
                     />
-                </p>
-                <p>
+                </div>
+                <div>
                     <Label>怪力の種: </Label>
                     <CheckboxInput
                         checked={this.param.isPowerSeed}
                         onChange={(ev) => { this.onTogglePowerSeed(ev.target.checked) }}
                     />
-                </p>
-                <Label>鬼人薬: </Label>
-                <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
-                    <Option value={0}>なし</Option>
-                    <Option value={1}>鬼人薬</Option>
-                    <Option value={2}>鬼人薬グレート</Option>
-                </Select>
-                <Label>オトモアイルー: </Label>
-                <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
-                    <Option value={0}>なし</Option>
-                    <Option value={1}>強化太鼓の技</Option>
-                    <Option value={2}>強化咆哮の技</Option>
-                </Select>
-                <InQuestRangeInput
-                    label="ヒトダマドリ"
-                    value={this.param.soulBirdAddValue}
-                    min={0}
-                    max={20}
-                    step={1}
-                    onChangeValue={(value) => { this.onUpdateSoulVird(value) }}
-                />
-                <InQuestRangeInput
-                    label="シラヌイカ"
-                    value={this.param.shiranuiSquidAddValue}
-                    min={0}
-                    max={50}
-                    step={5}
-                    onChangeValue={(value) => { this.onUpdateShiranuiSquid(value) }}
-                />
-                <p>
+                </div>
+                <div>
+                    <Label>鬼人薬: </Label>
+                    <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
+                        <Option value={0}>なし</Option>
+                        <Option value={1}>鬼人薬</Option>
+                        <Option value={2}>鬼人薬グレート</Option>
+                    </Select>
+                </div>
+                <div>
+                    <Label>オトモアイルー: </Label>
+                    <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
+                        <Option value={0}>なし</Option>
+                        <Option value={1}>強化太鼓の技</Option>
+                        <Option value={2}>強化咆哮の技</Option>
+                    </Select>
+                </div>
+                <div>
+                    <InQuestRangeInput
+                        label="ヒトダマドリ"
+                        value={this.param.soulBirdAddValue}
+                        min={0}
+                        max={20}
+                        step={1}
+                        onChangeValue={(value) => { this.onUpdateSoulVird(value) }}
+                    />
+                </div>
+                <div>
+                    <InQuestRangeInput
+                        label="シラヌイカ"
+                        value={this.param.shiranuiSquidAddValue}
+                        min={0}
+                        max={50}
+                        step={5}
+                        onChangeValue={(value) => { this.onUpdateShiranuiSquid(value) }}
+                    />
+                </div>
+                <div>
                     <Label>ホムラチョウ: </Label>
                     <CheckboxInput
                         checked={this.param.isHomuraButterFly}
                         onChange={(ev) => { this.onToggleHomuraButterFly(ev.target.checked) }}
                     />
-                </p>
-                <p>
+                </div>
+                <div>
                     <Label>アミキリアカネ: </Label>
                     <CheckboxInput
                         checked={this.param.isAmikiriDragonFly}
                         onChange={(ev) => { this.onToggleAmikiriDragonFly(ev.target.checked) }}
                     />
-                </p>
+                </div>
             </div>
         );
     }
