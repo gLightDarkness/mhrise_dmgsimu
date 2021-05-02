@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MonsterParts from '../../data/monster_parts.json'
 import Motion from '../../data/weapon_motion.json';
+import ElementType from "../../data/element_type.json"
 import Sharpness from '../../data/sharpness.json'
 import Table from '../atoms/table';
 import Thead from '../atoms/thead';
@@ -25,8 +26,16 @@ const ResultTable = (props) => {
 
     const offenseBaseValue = props.equipmentParams.weaponOffenseValue;
     const criticalBaseRate = props.equipmentParams.weaponCriticalRate;
-    const elementType = props.equipmentParams.weaponElement1;
-    const elementBaseValue = props.equipmentParams.weaponElementValue1;
+    const elementType1 = props.equipmentParams.weaponElement1;
+    const elementBaseValue1 = props.equipmentParams.weaponElementValue1;
+    let elementTypeStr1 = ElementType.filter((e) => {
+        return e["id"] == elementType1;
+    });
+    if(elementTypeStr1.length == 0) {
+        elementTypeStr1 = "無";
+    } else {
+        elementTypeStr1 = elementTypeStr1[0].name;
+    }
     let criticalPhysicalDMGRate = 1.25;
     let criticalElementDMGRate = 1;
 
@@ -40,6 +49,7 @@ const ResultTable = (props) => {
     }
     motion = motion[0];
     const motionRate = motion.value / 100;
+    const elementMotionRate = motion.element_rate;
 
     let sharpness = Sharpness.filter((m) => {
         return m["id"] == props.sharpnessID;
@@ -68,47 +78,90 @@ const ResultTable = (props) => {
         criticalRate = 100;
     }
 
+    // 属性値計算
+    let elementValue1 = elementBaseValue1;
+
     let results = {};
     for (let key in monsterParts) {
+        // 肉質計算
         let part = monsterParts[key];
-        let physicalVal = 0;
+        let physicalHardness = 0;
         switch (motion.physical_type) {
             case defines.PHYSICAL_TYPE["SEVER"]:
-                physicalVal = part.sever_value;
+                physicalHardness = part.sever_value;
                 break;
             case defines.PHYSICAL_TYPE["BLUNT"]:
-                physicalVal = part.blunt_value;
+                physicalHardness = part.blunt_value;
                 break;
             case defines.PHYSICAL_TYPE["SHOT"]:
-                physicalVal = part.shot_value;
+                physicalHardness = part.shot_value;
                 break;
             case defines.PHYSICAL_TYPE["IGNORE"]:
-                physicalVal = 100;
+                physicalHardness = 100;
+                break;
+        }
+        let elementHardness1 = 0;
+        switch(elementType1) {
+            case 1:
+                elementHardness1 = part.element_value_fire;
+                break;
+            case 2:
+                elementHardness1 = part.element_value_water;
+                break;
+            case 3:
+                elementHardness1 = part.element_value_thunder;
+                break;
+            case 4:
+                elementHardness1 = part.element_value_ice;
+                break;
+            case 5:
+                elementHardness1 = part.element_value_dragon;
                 break;
         }
 
         // ダメージ計算
-        let normalPhysicalDMG = physicalVal / 100 * offenseValue * motionRate;
-        normalPhysicalDMG *= sharpnessPhysicalRate;
-        normalPhysicalDMG = Math.round(normalPhysicalDMG);
-        let criticalPhysicalDMG = normalPhysicalDMG * criticalPhysicalDMGRate;
+        // 物理ダメージ
+        let physicalDMG = offenseValue * (physicalHardness / 100) * motionRate;
+        physicalDMG *= sharpnessPhysicalRate;
+        physicalDMG = Math.round(physicalDMG);
+        // 物理会心
+        let criticalPhysicalDMG = physicalDMG * criticalPhysicalDMGRate;
+        criticalPhysicalDMG = Math.round(criticalPhysicalDMG);
+
+        // 属性ダメージ
+        let elementDMG1 = elementValue1 * (elementHardness1 / 100) * elementMotionRate;
+        elementDMG1 *= sharpnessElementRate;
+        elementDMG1 = Math.round(elementDMG1);
+        // 属性会心
+        let criticalElementDMG1 = elementDMG1 * criticalElementDMGRate;
+        criticalElementDMG1 = Math.round(criticalElementDMG1);
+
+        // 期待値
         let expectedPhysicalDMG =
-            normalPhysicalDMG * (1 - (criticalRate / 100)) +
+            physicalDMG * (1 - (criticalRate / 100)) +
             criticalPhysicalDMG * (criticalRate / 100);
-        let normalDMG = {
+        let expectedElementDMG1 =
+            elementDMG1 * (1 - (criticalRate / 100)) +
+            criticalElementDMG1 * (criticalRate / 100);
+
+        // 計算結果格納
+        let dmg = {
             "id": 1,
-            "physical": normalPhysicalDMG
+            "physical": physicalDMG,
+            "element": elementDMG1
         }
         let criticalDMG = {
             "id": 2,
-            "physical": criticalPhysicalDMG
+            "physical": criticalPhysicalDMG,
+            "element": criticalElementDMG1
         }
         let expectedDMG = {
             "id": 3,
-            "physical": expectedPhysicalDMG
+            "physical": expectedPhysicalDMG,
+            "element": expectedElementDMG1,
         }
         let resultOfPart = [
-            normalDMG,
+            dmg,
             criticalDMG,
             expectedDMG
         ];
@@ -118,11 +171,18 @@ const ResultTable = (props) => {
     return (
         <div>
             <Label>
-                表示攻撃力: {offenseValue}
+                攻撃力: {offenseValue}
             </Label>
             <Label>
-                表示会心率: {criticalRate}
+                会心率: {criticalRate}
             </Label>
+            {elementType1 != 0 &&
+                <div>
+                    <Label>
+                        属性: {elementTypeStr1} {elementValue1}
+                    </Label>
+                </div>
+            }
             <Table>
                 <Thead>
                     <Tr>
@@ -139,7 +199,14 @@ const ResultTable = (props) => {
                         </Td>
                             {results[item.parts_id].map((result) =>
                                 <Td key={result.id}>
-                                    {result.physical}
+                                    <div>
+                                        {result.physical + result.element}
+                                        {elementType1 != 0 &&
+                                            <span>
+                                                ({result.element})
+                                        </span>
+                                        }
+                                    </div>
                                 </Td>
                             )}
                     </Tr>

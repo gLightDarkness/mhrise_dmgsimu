@@ -38,11 +38,21 @@ class EquipmentSetting extends Component {
     }
 
     onChangeElementType1(type) {
+        if(type) {
+            type = parseInt(type);
+        } else {
+            return;
+        }
         this.equipmentParams.weaponElement1 = type;
         this.handleUpdate(this.equipmentParams);
     }
 
     onChangeElementValue1(value) {
+        if(value) {
+            value = parseInt(value);
+        } else {
+            return;
+        }
         this.equipmentParams.weaponElementValue1 = value;
         this.handleUpdate(this.equipmentParams);
     }
