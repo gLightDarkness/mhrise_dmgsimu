@@ -24,11 +24,21 @@ class EquipmentSetting extends Component {
     }
 
     onChangeWeaponOffenseValue(value) {
-        this.equipmentParams.weaponOffenseValue = parseInt(value);
+        if(value) {
+            value = parseInt(value);
+        } else {
+            return;
+        }
+        this.equipmentParams.weaponOffenseValue = value;
         this.handleUpdate(this.equipmentParams);
     }
 
     onChangeWeaponCriticalRate(value) {
+        if(value) {
+            value = parseInt(value);
+        } else {
+            return;
+        }
         this.equipmentParams.weaponCriticalRate = value;
         this.handleUpdate(this.equipmentParams);
     }

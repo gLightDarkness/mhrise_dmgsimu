@@ -10,6 +10,7 @@ import Tbody from '../atoms/tbody';
 import Td from '../atoms/td';
 import Tr from '../atoms/tr';
 import defines from "../../defines"
+import Label from '../atoms/label';
 
 const ResultTable = (props) => {
     const headers = [
@@ -52,6 +53,21 @@ const ResultTable = (props) => {
     const sharpnessPhysicalRate = sharpness.physical_rate;
     //const sharpnessElementRate = sharpness.element_rate;
 
+    // 攻撃力計算
+    let offenseValue = offenseBaseValue;
+    offenseValue += props.preQuestParams.addOffenceValue;
+    offenseValue += props.inQuestParams.addOffenceValue;
+    offenseValue *= props.inQuestParams.mulOffenceCoeff;
+    offenseValue = Math.floor(offenseValue);
+
+    // 会心率計算
+    let criticalRate = criticalBaseRate;
+    criticalRate += props.inQuestParams.addCriticalRate;
+    criticalRate = Math.floor(criticalRate)
+    if(criticalRate > 100) {
+        criticalRate = 100;
+    }
+
     let results = {};
     for (let key in monsterParts) {
         let part = monsterParts[key];
@@ -70,9 +86,6 @@ const ResultTable = (props) => {
                 physicalVal = 100;
                 break;
         }
-        let offenseValue = offenseBaseValue;
-        offenseValue += props.preQuestParams.addOffenceValue;
-        let criticalRate = criticalBaseRate;
 
         // ダメージ計算
         let normalPhysicalDMG = physicalVal / 100 * offenseValue * motionRate;
@@ -104,6 +117,12 @@ const ResultTable = (props) => {
 
     return (
         <div>
+            <Label>
+                表示攻撃力: {offenseValue}
+            </Label>
+            <Label>
+                表示会心率: {criticalRate}
+            </Label>
             <Table>
                 <Thead>
                     <Tr>
