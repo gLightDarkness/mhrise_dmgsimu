@@ -2,13 +2,61 @@
 	{
 		"id": 1,
 		"name": "攻撃",
-		"max_level": 7,
-		"type": 1
+		"max_level": 7
 	},
 	{
 		"id": 2,
 		"name": "見切り",
-		"max_level": 7,
-		"type": 1
+		"max_level": 7
+	},
+	{
+		"id": 3,
+		"name": "火属性攻撃強化",
+		"max_level": 5
+	},
+	{
+		"id": 4,
+		"name": "水属性攻撃強化",
+		"max_level": 5
+	},
+	{
+		"id": 5,
+		"name": "雷属性攻撃強化",
+		"max_level": 5
+	},
+	{
+		"id": 6,
+		"name": "氷属性攻撃強化",
+		"max_level": 5
+	},
+	{
+		"id": 7,
+		"name": "龍属性攻撃強化",
+		"max_level": 5
+	},
+	{
+		"id": 8,
+		"name": "攻めの守勢",
+		"max_level": 3
+	},
+	{
+		"id": 9,
+		"name": "超会心",
+		"max_level": 3
+	},
+	{
+		"id": 10,
+		"name": "会心撃【属性】",
+		"max_level": 3
+	},
+	{
+		"id": 11,
+		"name": "弱点特効",
+		"max_level": 3
+	},
+	{
+		"id": 12,
+		"name": "心眼",
+		"max_level": 3
 	}
 ]
