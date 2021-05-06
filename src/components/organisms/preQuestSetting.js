@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CheckboxInput from '../atoms/checkboxInput';
 import Label from '../atoms/label';
 
-class PreQuestSetting extends Component {
+class PreQuestSetting extends PureComponent {
     constructor(props) {
         super(props);
         this.param = {
