@@ -20,6 +20,17 @@ const ResultTable = (props) => {
         { "id": 3, "name": "会心ダメージ" },
         { "id": 4, "name": "期待値" },
     ];
+    const hardnessHeaders = [
+        { "id": 1, "name": "部位" },
+        { "id": 2, "name": "斬" },
+        { "id": 3, "name": "打" },
+        { "id": 4, "name": "弾" },
+        { "id": 5, "name": "火" },
+        { "id": 6, "name": "水" },
+        { "id": 7, "name": "雷" },
+        { "id": 8, "name": "氷" },
+        { "id": 9, "name": "龍" },
+    ];
     const monsterParts = MonsterParts.filter((value) => {
         return (value.monster_id == props.monsterID);
     });
@@ -31,13 +42,11 @@ const ResultTable = (props) => {
     let elementTypeStr1 = ElementType.filter((e) => {
         return e["id"] == elementType1;
     });
-    if(elementTypeStr1.length == 0) {
+    if (elementTypeStr1.length == 0) {
         elementTypeStr1 = "無";
     } else {
         elementTypeStr1 = elementTypeStr1[0].name;
     }
-    let criticalPhysicalDMGRate = 1.25;
-    let criticalElementDMGRate = 1;
 
     let motion = Motion.filter((m) => {
         return m["id"] == props.motionID;
@@ -65,21 +74,34 @@ const ResultTable = (props) => {
 
     // 攻撃力計算
     let offenseValue = offenseBaseValue;
+    offenseValue += props.skillEffect.addOffenseValue;
     offenseValue += props.preQuestParams.addOffenceValue;
     offenseValue += props.inQuestParams.addOffenceValue;
+    offenseValue *= props.skillEffect.offenseCoeff;
     offenseValue *= props.inQuestParams.mulOffenceCoeff;
     offenseValue = Math.floor(offenseValue);
 
     // 会心率計算
     let criticalRate = criticalBaseRate;
     criticalRate += props.inQuestParams.addCriticalRate;
+    criticalRate += props.skillEffect.addCriticalValue;
     criticalRate = Math.floor(criticalRate)
-    if(criticalRate > 100) {
+    if (criticalRate > 100) {
         criticalRate = 100;
     }
 
     // 属性値計算
     let elementValue1 = elementBaseValue1;
+    elementValue1 += props.skillEffect.addElementValue;
+    elementValue1 *= props.skillEffect.elementCoeff;
+    elementValue1 = Math.floor(elementValue1);
+
+    // ダメージ係数
+    const damageCoeff = props.skillEffect.damageCoeff;
+
+    // 会心率係数(スキル情報から取得)
+    let criticalPhysicalDMGRate = props.skillEffect.criticalPhysicalCoeff;
+    let criticalElementDMGRate = props.skillEffect.criticalElementCoeff;
 
     let results = {};
     for (let key in monsterParts) {
@@ -101,7 +123,7 @@ const ResultTable = (props) => {
                 break;
         }
         let elementHardness1 = 0;
-        switch(elementType1) {
+        switch (elementType1) {
             case 1:
                 elementHardness1 = part.element_value_fire;
                 break;
@@ -119,10 +141,33 @@ const ResultTable = (props) => {
                 break;
         }
 
+        // 弱点特効処理
+        let criticalPartRate = criticalRate;
+        if(physicalHardness >= 45) {
+            let weaknessExploitEffect = props.skillEffect.spEffects.find((eff) => (eff.skill_id == defines.SP_SKILL_ID.WEAKNESS_EXPLOIT));
+            if (weaknessExploitEffect) {
+                criticalPartRate += weaknessExploitEffect.critical_value;
+                if (criticalPartRate > 100) {
+                    criticalPartRate = 100;
+                }
+            }
+        }
+
+        // 心眼処理
+        let damageCoeffByPart = damageCoeff;
+        const repelValue = physicalHardness * sharpnessPhysicalRate;
+        if(repelValue < 45) {
+            let mindsEyeEffect = props.skillEffect.spEffects.find((eff) => (eff.skill_id == defines.SP_SKILL_ID.MINDS_EYE));
+            if(mindsEyeEffect) {
+                damageCoeffByPart *= mindsEyeEffect.damage_coeff;
+            }
+        }
+
         // ダメージ計算
         // 物理ダメージ
         let physicalDMG = offenseValue * (physicalHardness / 100) * motionRate;
         physicalDMG *= sharpnessPhysicalRate;
+        physicalDMG *= damageCoeffByPart;
         physicalDMG = Math.round(physicalDMG);
         // 物理会心
         let criticalPhysicalDMG = physicalDMG * criticalPhysicalDMGRate;
@@ -131,6 +176,7 @@ const ResultTable = (props) => {
         // 属性ダメージ
         let elementDMG1 = elementValue1 * (elementHardness1 / 100) * elementMotionRate;
         elementDMG1 *= sharpnessElementRate;
+        elementDMG1 *= damageCoeffByPart;
         elementDMG1 = Math.round(elementDMG1);
         // 属性会心
         let criticalElementDMG1 = elementDMG1 * criticalElementDMGRate;
@@ -138,11 +184,11 @@ const ResultTable = (props) => {
 
         // 期待値
         let expectedPhysicalDMG =
-            physicalDMG * (1 - (criticalRate / 100)) +
-            criticalPhysicalDMG * (criticalRate / 100);
+            physicalDMG * (1 - (criticalPartRate / 100)) +
+            criticalPhysicalDMG * (criticalPartRate / 100);
         let expectedElementDMG1 =
-            elementDMG1 * (1 - (criticalRate / 100)) +
-            criticalElementDMG1 * (criticalRate / 100);
+            elementDMG1 * (1 - (criticalPartRate / 100)) +
+            criticalElementDMG1 * (criticalPartRate / 100);
 
         // 計算結果格納
         let dmg = {
@@ -183,36 +229,85 @@ const ResultTable = (props) => {
                     </Label>
                 </div>
             }
-            <Table>
-                <Thead>
-                    <Tr>
-                        {headers.map((item) => 
-                        <Th scope="column" key={item.id}>{item.name}</Th>
-                        )}
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    {monsterParts.map((item) => 
-                    <Tr key={item.parts_id}>
-                        <Td>
-                            {item.name}
-                        </Td>
-                            {results[item.parts_id].map((result) =>
-                                <Td key={result.id}>
-                                    <div>
-                                        {result.physical + result.element}
-                                        {elementType1 != 0 &&
-                                            <span>
-                                                ({result.element})
-                                        </span>
-                                        }
-                                    </div>
-                                </Td>
+
+            <div>
+                <Table>
+                    <Thead>
+                        <Tr>
+                            {headers.map((item) =>
+                                <Th scope="column" key={item.id}>{item.name}</Th>
                             )}
-                    </Tr>
-                    )}
-                </Tbody>
-            </Table>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {monsterParts.map((item) =>
+                            <Tr key={item.parts_id}>
+                                <Td>
+                                    {item.name}
+                                </Td>
+                                {results[item.parts_id].map((result) =>
+                                    <Td key={result.id}>
+                                        <div>
+                                            {result.physical + result.element}
+                                            {elementType1 != 0 &&
+                                                <span>
+                                                    ({result.element})
+                                        </span>
+                                            }
+                                        </div>
+                                    </Td>
+                                )}
+                            </Tr>
+                        )}
+                    </Tbody>
+                </Table>
+            </div>
+
+            <div>
+                <Label>□肉質一覧</Label>
+                <Table>
+                    <Thead>
+                        <Tr>
+                            {hardnessHeaders.map((item) =>
+                                <Th scope="column" key={item.id}>{item.name}</Th>
+                            )}
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {monsterParts.map((item) =>
+                            <Tr key={item.parts_id}>
+                                <Td>
+                                    {item.name}
+                                </Td>
+                                <Td>
+                                    {item.sever_value}
+                                </Td>
+                                <Td>
+                                    {item.blunt_value}
+                                </Td>
+                                <Td>
+                                    {item.shot_value}
+                                </Td>
+                                <Td>
+                                    {item.element_value_fire}
+                                </Td>
+                                <Td>
+                                    {item.element_value_water}
+                                </Td>
+                                <Td>
+                                    {item.element_value_thunder}
+                                </Td>
+                                <Td>
+                                    {item.element_value_ice}
+                                </Td>
+                                <Td>
+                                    {item.element_value_dragon}
+                                </Td>
+                            </Tr>
+                        )}
+                    </Tbody>
+                </Table>
+            </div>
         </div>
     );
 }
@@ -224,20 +319,7 @@ ResultTable.propTypes = {
     equipmentParams: PropTypes.object,
     preQuestParams: PropTypes.object,
     inQuestParams: PropTypes.object,
-    skillIDs: PropTypes.array,
-    dragonSkillIDs: PropTypes.array,
-    flags: PropTypes.number,
-
-    // ----------------------- old
-    physicalType: PropTypes.number,
-    motionValue: PropTypes.number,
-    motionElementRate: PropTypes.number,
-    offenseValue: PropTypes.number,
-    elementType: PropTypes.number,
-    elementValue: PropTypes.number,
-    criticalRate: PropTypes.number,
-    criticalPhysicalRate: PropTypes.number,
-    criticalElementRate: PropTypes.number,
+    skillEffect: PropTypes.object,
 }
 
 export default ResultTable;

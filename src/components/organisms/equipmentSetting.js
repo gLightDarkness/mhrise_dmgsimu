@@ -4,6 +4,7 @@ import WeaponTypeDropDown from '../modecules/weaponTypeDropdown';
 import NumberInput from '../atoms/numberInput';
 import Label from '../atoms/label';
 import ElementTypeDropdown from '../modecules/elementTypeDropdown';
+import SkillSetting from '../modecules/skillSetting';
 
 class EquipmentSetting extends Component {
     constructor(props) {
@@ -82,6 +83,15 @@ class EquipmentSetting extends Component {
                     <Label>属性値: </Label>
                     <NumberInput value={this.equipmentParams.weaponElementValue1} min={0} onChange={(ev) => { this.onChangeElementValue1(ev.target.value) }} />
                 </div>
+
+                <div>
+                    <SkillSetting
+                        skillInfoList={this.props.skillInfoList}
+                        onAddSkill={this.props.onAddSkill}
+                        onSetSkillLevel={this.props.onSetSkillLevel}
+                        onRemoveSkill={this.props.onRemoveSkill}
+                    />
+                </div>
             </div>
         );
     }
@@ -89,7 +99,11 @@ class EquipmentSetting extends Component {
 
 EquipmentSetting.propTypes = {
     equipmentParams: PropTypes.object,
-    handleUpdate: PropTypes.func
+    handleUpdate: PropTypes.func,
+    skillInfoList: PropTypes.array,
+    onAddSkill: PropTypes.func,
+    onSetSkillLevel: PropTypes.func,
+    onRemoveSkill: PropTypes.func,
 }
 
 export default EquipmentSetting;

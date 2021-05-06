@@ -3,6 +3,8 @@ import EquipmentSetting from '../organisms/equipmentSetting';
 import PreQuestSetting from '../organisms/preQuestSetting';
 import InQuestSetting from '../organisms/inQuestSetting';
 import ResultArea from '../organisms/resultArea';
+import SkillSet from '../../models/skillSet'
+import { ActiveSkillSetting } from '../organisms/activeSkillSetting';
 
 class DamageSimulator extends Component {
     constructor(props) {
@@ -34,29 +36,42 @@ class DamageSimulator extends Component {
                 addElementValue: 0,
                 badConditionWater: false,
             },
-            skillIds: [],
             dragonSkillIds: [],
         }
+        this.skillSet = new SkillSet();
     }
 
     handleEquipmentParamUpdate(params) {
-        this.setState({equipmentParams: params});
+        this.setState({ equipmentParams: params });
     }
 
     handlePreQuestParamUpdate(params) {
-        this.setState({preQuestParams: params});
+        this.setState({ preQuestParams: params });
     }
 
     handleInQuestParamUpdate(params) {
-        this.setState({inQuestParams: params});
+        this.setState({ inQuestParams: params });
+    }
+
+    onUpdateSkills() {
+        this.forceUpdate();
     }
 
     render() {
+        const skillEffect = this.skillSet.getSkillEffect(
+            this.state.equipmentParams.weaponOffenseValue,
+            this.state.equipmentParams.weaponElement1,
+            this.state.equipmentParams.weaponElementValue1,
+        );
         return (
             <div>
                 <EquipmentSetting
                     handleUpdate={(params) => this.handleEquipmentParamUpdate(params)}
                     equipmentParams={this.state.equipmentParams}
+                    skillInfoList={this.skillSet.getSkillInfoList()}
+                    onAddSkill={(skillID) => { this.skillSet.addSkill(skillID); this.onUpdateSkills(); }}
+                    onSetSkillLevel={(skillID, level) => { this.skillSet.setSkillLevel(skillID, level); this.onUpdateSkills(); }}
+                    onRemoveSkill={(skillID) => { this.skillSet.removeSkill(skillID); this.onUpdateSkills(); }}
                 />
                 <PreQuestSetting
                     handleUpdate={(params) => this.handlePreQuestParamUpdate(params)}
@@ -66,10 +81,15 @@ class DamageSimulator extends Component {
                     handleUpdate={(params) => this.handleInQuestParamUpdate(params)}
                     inQuestParams={this.state.inQuestParams}
                 />
+                <ActiveSkillSetting
+                    skillInfoList={this.skillSet.getSkillInfoList()}
+                    onToggleSkillActivate={(skillID, enable) => { this.skillSet.setSkillEnable(skillID, enable), this.onUpdateSkills(); }}
+                />
                 <ResultArea
                     equipmentParams={this.state.equipmentParams}
                     preQuestParams={this.state.preQuestParams}
                     inQuestParams={this.state.inQuestParams}
+                    skillEffect={skillEffect}
                 />
             </div>
         );

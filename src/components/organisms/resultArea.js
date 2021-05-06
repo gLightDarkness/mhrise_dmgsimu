@@ -15,8 +15,6 @@ class ResultArea extends Component {
             equipmentParams: props.equipmentParams,
             preQuestParams: props.preQuestParams,
             inQuestParams: props.inQuestParams,
-            skillIDs: props.skillIDs,
-            dragonSkillIDs: props.dragonSkillIDs,
         };
         this.resultObj = {
             motionValue: 0,
@@ -27,7 +25,6 @@ class ResultArea extends Component {
             criticalRate: 0,
             criticalPhysicalRate: 0,
             criticalElementRate: 0,
-            flags: 0,
         };
     }
 
@@ -54,7 +51,6 @@ class ResultArea extends Component {
             criticalPhysicalRate: 0,
             criticalElementRate: 0,
             sharpness: 0,
-            flags: 0,
         }
         resultObj.offenseValue = this.state.equipmentParams.weaponOffenseValue;
         this.resultObj = resultObj;
@@ -84,17 +80,7 @@ class ResultArea extends Component {
                     equipmentParams={this.state.equipmentParams}
                     preQuestParams={this.state.preQuestParams}
                     inQuestParams={this.state.inQuestParams}
-                    skillIDs={this.state.skillIDs}
-                    dragonSkillIDs={this.state.dragonSkillIDs}
-                    flags={this.resultObj.flags}
-
-                    // ----------------------- old
-                    offenseValue={this.resultObj.offenseValue}
-                    elementType={this.resultObj.elementType}
-                    elementValue={this.resultObj.elementValue}
-                    criticalRate={this.resultObj.criticalRate}
-                    criticalPhysicalRate={this.resultObj.criticalPhysicalRate}
-                    criticalElementRate={this.resultObj.criticalElementRate}
+                    skillEffect={this.props.skillEffect}
                 />
             </div>
         );
@@ -105,8 +91,7 @@ ResultArea.propTypes = {
     equipmentParams: PropTypes.object,
     preQuestParams: PropTypes.object,
     inQuestParams: PropTypes.object,
-    skillIDs: PropTypes.array,
-    dragonSkillIDs: PropTypes.array,
+    skillEffect: PropTypes.object,
 }
 
 export default ResultArea;
