@@ -128,7 +128,7 @@ class InQuestSetting extends Component {
                     />
                 </div>
                 <div class="row mb-3">
-                    <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">鬼人薬: </Label>
+                    <Label class="col-xxl-1 col-md-2 col-sm-3 col-form-label mb-1">鬼人薬: </Label>
                     <div class="col-sm-5">
                         <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
                             <Option value={0}>なし</Option>
@@ -138,7 +138,7 @@ class InQuestSetting extends Component {
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">オトモアイルー: </Label>
+                    <Label class="col-xxl-1 col-md-2 col-sm-3 col-form-label mb-1">オトモアイルー: </Label>
                     <div class="col-sm-5">
                         <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
                             <Option value={0}>なし</Option>

@@ -46,7 +46,7 @@ class DragonSkillFree extends Component {
         const selectableList = this.getSelectableSkillList();
         return (
             <div class="row mb-3">
-                <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">百竜スキル: </Label>
+                <Label class="col-xxl-1 col-md-2 col-sm-3 col-form-label mb-1">百竜スキル: </Label>
                 <div class="col-sm-5">
                     <Select onChange={(ev) => { this.onSelectSkill(ev.target.value); }}>
                         {selectableList.map((item) =>
