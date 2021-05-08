@@ -50,7 +50,7 @@ class SkillSetting extends Component {
                         </Option>
                     )}
                 </Select>
-                <Button type="button" onClick={() => { this.onClickAddButton(); }}>
+                <Button type="button" onClick={() => { this.onClickAddButton(); }} class="btn btn-primary">
                     追加
                 </Button>
                 <Ul>
@@ -64,7 +64,7 @@ class SkillSetting extends Component {
                                 onChange={(ev) => { this.props.onSetSkillLevel(item.id, parseInt(ev.target.value)) }}
                             />
                             <Label>{item.level}</Label>
-                            <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }}>
+                            <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }} class="btn btn-danger">
                                 削除
                             </Button>
                         </Li>

@@ -7,6 +7,7 @@ const Button = (props) => {
             type={props.type}
             disabled={props.disabled}
             onClick={props.onClick}
+            class={props.class}
         >
             {props.children}
         </button>
@@ -17,6 +18,7 @@ Button.propTypes = {
     type: PropTypes.string,
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
+    class: PropTypes.string,
 }
 
 export default Button;

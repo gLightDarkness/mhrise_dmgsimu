@@ -54,14 +54,14 @@ class DragonSkillFree extends Component {
                         </Option>
                     )}
                 </Select>
-                <Button type="button" onClick={() => { this.onClickAddButton(); }}>
+                <Button type="button" onClick={() => { this.onClickAddButton(); }} class="btn btn-primary">
                     追加
                 </Button>
                 <Ul>
                     {this.props.skillInfoList.map((item) =>
                         <Li key={item.id}>
                             {item.name}                            <Label>{item.level}</Label>
-                            <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }}>
+                            <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }} class="btn btn-danger">
                                 削除
                             </Button>
                         </Li>

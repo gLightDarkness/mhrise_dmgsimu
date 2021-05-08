@@ -2,3 +2,12 @@ div#root {padding: 10px}
 button {margin: 0 10px;}
 table {margin-top: 20px;}
 th{font-weight: 400; text-align: left;}
+/* 切れ味有効 */
+.sharpness-red { color: #000;background-color: red;border-color: crimson;}
+.sharpness-orange { color: #000;background-color: orange;border-color: sandybrown;}
+.sharpness-yellow { color: #000;background-color: yellow;border-color: khaki;}
+.sharpness-green { color: #000;background-color: mediumseagreen;border-color: seagreen;}
+.sharpness-blue { color: #000;background-color: deepskyblue;border-color: dodgerblue;}
+.sharpness-white { color: #000;background-color: white ;border-color: gainsboro;}
+/* 切れ味無効 */
+.sharpness-disabled { color: #000;background-color: silver;border-color: dimgray;}
