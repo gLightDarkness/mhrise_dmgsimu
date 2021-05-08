@@ -80,6 +80,7 @@ class ResultArea extends Component {
                     equipmentParams={this.state.equipmentParams}
                     preQuestParams={this.state.preQuestParams}
                     inQuestParams={this.state.inQuestParams}
+                    dragonSkillEffect={this.props.dragonSkillEffect}
                     skillEffect={this.props.skillEffect}
                 />
             </div>
@@ -91,6 +92,7 @@ ResultArea.propTypes = {
     equipmentParams: PropTypes.object,
     preQuestParams: PropTypes.object,
     inQuestParams: PropTypes.object,
+    dragonSkillEffect: PropTypes.object,
     skillEffect: PropTypes.object,
 }
 

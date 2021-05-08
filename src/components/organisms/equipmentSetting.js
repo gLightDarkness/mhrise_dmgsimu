@@ -5,6 +5,7 @@ import NumberInput from '../atoms/numberInput';
 import Label from '../atoms/label';
 import ElementTypeDropdown from '../modecules/elementTypeDropdown';
 import SkillSetting from '../modecules/skillSetting';
+import DragonSkillSettingFree from '../modecules/dragonSkillSettingFree';
 
 class EquipmentSetting extends Component {
     constructor(props) {
@@ -85,6 +86,14 @@ class EquipmentSetting extends Component {
                 </div>
 
                 <div>
+                    <DragonSkillSettingFree
+                        skillInfoList={this.props.dragonSkillInfoList}
+                        onAddSkill={this.props.onAddDragonSkill}
+                        onRemoveSkill={this.props.onRemoveDragonSkill}
+                    />
+                </div>
+
+                <div>
                     <SkillSetting
                         skillInfoList={this.props.skillInfoList}
                         onAddSkill={this.props.onAddSkill}
@@ -104,6 +113,9 @@ EquipmentSetting.propTypes = {
     onAddSkill: PropTypes.func,
     onSetSkillLevel: PropTypes.func,
     onRemoveSkill: PropTypes.func,
+    dragonSkillInfoList: PropTypes.array,
+    onAddDragonSkill: PropTypes.func,
+    onRemoveDragonSkill: PropTypes.func,
 }
 
 export default EquipmentSetting;
