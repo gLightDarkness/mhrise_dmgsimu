@@ -1,13 +1,11 @@
 import Skill from "../data/skill"
 import SkillEffect from "../data/skill_effect.json"
+import CommonFunctions from "../commonFunctions"
+import Defines from "../defines"
 
 class SkillSet {
     constructor() {
         this.skills = [];
-
-        this.TRIGGER_TYPE_PERMANENT = 1;
-        this.TRIGGER_TYPE_CONDITIONAL = 2;
-        this.TRIGGER_TYPE_SPECIAL = 3;
     }
 
     addSkill(skillID) {
@@ -80,7 +78,7 @@ class SkillSet {
                 console.log("Error: not find skill. ID: %d, level: %d", s.id, s.level);
                 return;
             }
-            if (effect.trigger_type == this.TRIGGER_TYPE_SPECIAL) {
+            if (effect.trigger_type == Defines.SKILL_TRIGGER_TYPE.SPECIAL) {
                 ret.spEffects.push(effect);
                 return;
             }
@@ -97,7 +95,7 @@ class SkillSet {
             if (effect.critical_value != "") {
                 ret.addCriticalValue += effect.critical_value;
             }
-            const elementBit = SkillSet.convertElementTypeToElementBit(elementType);
+            const elementBit = CommonFunctions.convertElementTypeToElementBit(elementType);
             if (effect.element_bits != "" && effect.element_bits & elementBit) {
                 if (effect.element_value != "") {
                     ret.addElementValue += effect.element_value;
@@ -120,21 +118,6 @@ class SkillSet {
             }
         });
         return ret;
-    }
-
-    static convertElementTypeToElementBit(elementType) {
-        switch (elementType) {
-            case 1:
-            case 2:
-                return elementType;
-            case 3:
-                return 4;
-            case 4:
-                return 8;
-            case 5:
-                return 16;
-        }
-        return 0;
     }
 }
 export default SkillSet;

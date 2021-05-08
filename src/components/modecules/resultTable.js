@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Monster from '../../data/monster.json'
 import MonsterParts from '../../data/monster_parts.json'
 import Motion from '../../data/weapon_motion.json';
 import ElementType from "../../data/element_type.json"
@@ -10,8 +11,9 @@ import Th from '../atoms/th';
 import Tbody from '../atoms/tbody';
 import Td from '../atoms/td';
 import Tr from '../atoms/tr';
-import defines from "../../defines"
+import Defines from "../../defines"
 import Label from '../atoms/label';
+import CommonFunctions from "../../commonFunctions";
 
 const ResultTable = (props) => {
     const headers = [
@@ -31,13 +33,22 @@ const ResultTable = (props) => {
         { "id": 8, "name": "氷" },
         { "id": 9, "name": "龍" },
     ];
-    const monsterParts = MonsterParts.filter((value) => {
-        return (value.monster_id == props.monsterID);
+    const monster = Monster.find((mon) => (mon.id == props.monsterID));
+    if (!monster) {
+        return (
+            <div></div>
+        );
+    }
+    const monsterParts = MonsterParts.filter((mp) => {
+        return (mp.monster_id == props.monsterID);
     });
 
     const offenseBaseValue = props.equipmentParams.weaponOffenseValue;
     const criticalBaseRate = props.equipmentParams.weaponCriticalRate;
-    const elementType1 = props.equipmentParams.weaponElement1;
+    let elementType1 = props.equipmentParams.weaponElement1;
+    if (props.dragonSkillEffect.addElementType != 0) {
+        elementType1 = props.dragonSkillEffect.addElementType;
+    }
     const elementBaseValue1 = props.equipmentParams.weaponElementValue1;
     let elementTypeStr1 = ElementType.filter((e) => {
         return e["id"] == elementType1;
@@ -74,16 +85,24 @@ const ResultTable = (props) => {
 
     // 攻撃力計算
     let offenseValue = offenseBaseValue;
+    offenseValue += props.dragonSkillEffect.addOffenseValue;
     offenseValue += props.skillEffect.addOffenseValue;
     offenseValue += props.preQuestParams.addOffenceValue;
     offenseValue += props.inQuestParams.addOffenceValue;
+    offenseValue *= props.dragonSkillEffect.offenseCoeff;
     offenseValue *= props.skillEffect.offenseCoeff;
     offenseValue *= props.inQuestParams.mulOffenceCoeff;
+    // 百竜スキル: 無属性強化
+    const normalBoostEffect = props.dragonSkillEffect.spSkills.find((eff) => (eff.id == Defines.SP_DRAGON_SKILL_ID.NORMAL_ATTACK_BOOST));
+    if (normalBoostEffect) {
+        offenseValue += normalBoostEffect.offense_value;
+    }
     offenseValue = Math.floor(offenseValue);
 
     // 会心率計算
     let criticalRate = criticalBaseRate;
     criticalRate += props.inQuestParams.addCriticalRate;
+    criticalRate += props.dragonSkillEffect.addCriticalValue;
     criticalRate += props.skillEffect.addCriticalValue;
     criticalRate = Math.floor(criticalRate)
     if (criticalRate > 100) {
@@ -92,16 +111,40 @@ const ResultTable = (props) => {
 
     // 属性値計算
     let elementValue1 = elementBaseValue1;
+    elementValue1 += props.dragonSkillEffect.addElementValue;
     elementValue1 += props.skillEffect.addElementValue;
+    elementValue1 *= props.dragonSkillEffect.elementCoeff;
     elementValue1 *= props.skillEffect.elementCoeff;
     elementValue1 = Math.floor(elementValue1);
 
     // ダメージ係数
-    const damageCoeff = props.skillEffect.damageCoeff;
+    let coeff = 1;
+    coeff *= props.dragonSkillEffect.physicalDamageCoeff;
+    // 百竜スキル: ***系特攻
+    props.dragonSkillEffect.slayerSkills.forEach((s) => {
+        const typeBit = CommonFunctions.convertTargetTypeToTypeBit(s.target_type);
+        if (monster.type_bits != "" && monster.type_bits & typeBit) {
+            if (s.physical_damage_coeff != "") {
+                coeff *= s.physical_damage_coeff;
+            }
+        }
+    });
+    // 百竜スキル: 鉄蟲糸技強化
+    if (motion.is_techu_shigi != "") {
+        const techuBoostEffect = props.dragonSkillEffect.spSkills.find((eff) => (eff.id == Defines.SP_DRAGON_SKILL_ID.TECHU_SHIGI_BOOST));
+        if (techuBoostEffect) {
+            coeff *= techuBoostEffect.physical_damage_coeff;
+        }
+    }
+    const physicalDamageCoeff = coeff;
+    coeff = props.dragonSkillEffect.elementDamageCoeff;
+    const elementDamageCoeff = coeff;
+    coeff = props.skillEffect.damageCoeff;
+    const damageCoeff = coeff;
 
     // 会心率係数(スキル情報から取得)
-    let criticalPhysicalDMGRate = props.skillEffect.criticalPhysicalCoeff;
-    let criticalElementDMGRate = props.skillEffect.criticalElementCoeff;
+    const criticalPhysicalDMGRate = props.skillEffect.criticalPhysicalCoeff;
+    const criticalElementDMGRate = props.skillEffect.criticalElementCoeff;
 
     let results = {};
     for (let key in monsterParts) {
@@ -109,16 +152,16 @@ const ResultTable = (props) => {
         let part = monsterParts[key];
         let physicalHardness = 0;
         switch (motion.physical_type) {
-            case defines.PHYSICAL_TYPE["SEVER"]:
+            case Defines.PHYSICAL_TYPE["SEVER"]:
                 physicalHardness = part.sever_value;
                 break;
-            case defines.PHYSICAL_TYPE["BLUNT"]:
+            case Defines.PHYSICAL_TYPE["BLUNT"]:
                 physicalHardness = part.blunt_value;
                 break;
-            case defines.PHYSICAL_TYPE["SHOT"]:
+            case Defines.PHYSICAL_TYPE["SHOT"]:
                 physicalHardness = part.shot_value;
                 break;
-            case defines.PHYSICAL_TYPE["IGNORE"]:
+            case Defines.PHYSICAL_TYPE["IGNORE"]:
                 physicalHardness = 100;
                 break;
         }
@@ -141,10 +184,10 @@ const ResultTable = (props) => {
                 break;
         }
 
-        // 弱点特効処理
+        // スキル: 弱点特効
         let criticalPartRate = criticalRate;
-        if(physicalHardness >= 45) {
-            let weaknessExploitEffect = props.skillEffect.spEffects.find((eff) => (eff.skill_id == defines.SP_SKILL_ID.WEAKNESS_EXPLOIT));
+        if (physicalHardness >= Defines.WEAKNESS_HARDNESS.PHYSICAL) {
+            let weaknessExploitEffect = props.skillEffect.spEffects.find((eff) => (eff.skill_id == Defines.SP_SKILL_ID.WEAKNESS_EXPLOIT));
             if (weaknessExploitEffect) {
                 criticalPartRate += weaknessExploitEffect.critical_value;
                 if (criticalPartRate > 100) {
@@ -153,13 +196,50 @@ const ResultTable = (props) => {
             }
         }
 
-        // 心眼処理
+        // 百竜スキル: 弱点特効【属性】処理
+        let elementDamageCoeffByPart = elementDamageCoeff;
+        if (elementHardness1 >= Defines.WEAKNESS_HARDNESS.ELEMENT) {
+            let weaknessExploitElementEffect = props.dragonSkillEffect.spSkills.find((eff) => (eff.id == Defines.SP_DRAGON_SKILL_ID.WEAKNESS_EXPLOIT_ELEMENT));
+            if (weaknessExploitElementEffect) {
+                elementDamageCoeffByPart *= weaknessExploitElementEffect.element_damage_coeff;
+            }
+        }
+
+        // スキル: 心眼
+        // TODO: 属性ダメージには影響しないかもしれぬ
         let damageCoeffByPart = damageCoeff;
         const repelValue = physicalHardness * sharpnessPhysicalRate;
-        if(repelValue < 45) {
-            let mindsEyeEffect = props.skillEffect.spEffects.find((eff) => (eff.skill_id == defines.SP_SKILL_ID.MINDS_EYE));
-            if(mindsEyeEffect) {
+        if (repelValue < 45) {
+            let mindsEyeEffect = props.skillEffect.spEffects.find((eff) => (eff.skill_id == Defines.SP_SKILL_ID.MINDS_EYE));
+            if (mindsEyeEffect) {
                 damageCoeffByPart *= mindsEyeEffect.damage_coeff;
+            }
+        }
+
+        let expectedPhysicalDMGCoeff = 1.0;
+        // 百竜スキル: 鈍刃の一撃
+        let dullBladeCriticalProbability = 0;
+        let dullBladeCriticalCoeff = 1;
+        if (sharpness.id <= 4) {
+            let dullBladeCriticalEffect = props.dragonSkillEffect.spSkills.find((eff) => (eff.id == Defines.SP_DRAGON_SKILL_ID.DULL_BLADE_CRITICAL));
+            if (dullBladeCriticalEffect) {
+                dullBladeCriticalProbability = dullBladeCriticalEffect.probability;
+                dullBladeCriticalCoeff *= dullBladeCriticalEffect.physical_damage_coeff;
+                expectedPhysicalDMGCoeff *= ((1 - (dullBladeCriticalProbability / 100)) +
+                    (dullBladeCriticalProbability / 100 * dullBladeCriticalCoeff));
+            }
+        }
+
+        // 百竜スキル: 痛恨の一撃
+        let griefBladeCriticalProbability = 0;
+        let griefBladeCriticalCoeff = 1;
+        if (criticalPartRate < 0) {
+            console.log("bad critical");
+            let griefBladeCriticalEffect = props.dragonSkillEffect.spSkills.find((eff) => (eff.id == Defines.SP_DRAGON_SKILL_ID.GRIEF_BLADE_CRITICAL));
+            console.log(griefBladeCriticalEffect);
+            if (griefBladeCriticalEffect) {
+                griefBladeCriticalProbability = griefBladeCriticalEffect.probability;
+                griefBladeCriticalCoeff *= griefBladeCriticalEffect.physical_damage_coeff;
             }
         }
 
@@ -167,15 +247,38 @@ const ResultTable = (props) => {
         // 物理ダメージ
         let physicalDMG = offenseValue * (physicalHardness / 100) * motionRate;
         physicalDMG *= sharpnessPhysicalRate;
+        physicalDMG *= physicalDamageCoeff;
         physicalDMG *= damageCoeffByPart;
         physicalDMG = Math.round(physicalDMG);
         // 物理会心
-        let criticalPhysicalDMG = physicalDMG * criticalPhysicalDMGRate;
+        let criticalPhysicalDMGRateByPart = criticalPhysicalDMGRate;
+        if (criticalPartRate < 0) {
+            // マイナス会心
+            criticalPhysicalDMGRateByPart = 0.75;
+            criticalPartRate = Math.abs(criticalPartRate);
+        }
+        let criticalPhysicalDMG = physicalDMG * criticalPhysicalDMGRateByPart;
         criticalPhysicalDMG = Math.round(criticalPhysicalDMG);
+        // 鈍刃の一撃
+        let dullBladeDMG = 0;
+        let dullBladeCriticalDMG = 0;
+        if (dullBladeCriticalProbability > 0) {
+            dullBladeDMG = physicalDMG * dullBladeCriticalCoeff;
+            dullBladeDMG = Math.round(dullBladeDMG);
+            dullBladeCriticalDMG = criticalPhysicalDMG * dullBladeCriticalCoeff;
+            dullBladeCriticalDMG = Math.round(dullBladeCriticalDMG);
+        }
+        // 痛恨の一撃
+        let griefBladeDMG = 0;
+        if (griefBladeCriticalProbability > 0) {
+            griefBladeDMG = physicalDMG * griefBladeCriticalCoeff;
+            griefBladeDMG = Math.round(griefBladeDMG);
+        }
 
         // 属性ダメージ
         let elementDMG1 = elementValue1 * (elementHardness1 / 100) * elementMotionRate;
         elementDMG1 *= sharpnessElementRate;
+        elementDMG1 *= elementDamageCoeffByPart;
         elementDMG1 *= damageCoeffByPart;
         elementDMG1 = Math.round(elementDMG1);
         // 属性会心
@@ -185,25 +288,35 @@ const ResultTable = (props) => {
         // 期待値
         let expectedPhysicalDMG =
             physicalDMG * (1 - (criticalPartRate / 100)) +
-            criticalPhysicalDMG * (criticalPartRate / 100);
+            criticalPhysicalDMG * (criticalPartRate / 100) * ((100 - griefBladeCriticalProbability) / 100) +
+            griefBladeDMG * (criticalPartRate / 100) * ((griefBladeCriticalProbability) / 100);
+        expectedPhysicalDMG *= expectedPhysicalDMGCoeff;
+        expectedPhysicalDMG = Math.round(expectedPhysicalDMG * 100) / 100;
         let expectedElementDMG1 =
             elementDMG1 * (1 - (criticalPartRate / 100)) +
             criticalElementDMG1 * (criticalPartRate / 100);
+        expectedElementDMG1 = Math.round(expectedElementDMG1 * 100) / 100;
 
         // 計算結果格納
         let dmg = {
             "id": 1,
             "physical": physicalDMG,
+            "dullBladePhysical": dullBladeDMG,
+            "griefBladePhysical": 0,
             "element": elementDMG1
         }
         let criticalDMG = {
             "id": 2,
             "physical": criticalPhysicalDMG,
+            "dullBladePhysical": dullBladeCriticalDMG,
+            "griefBladePhysical": griefBladeDMG,
             "element": criticalElementDMG1
         }
         let expectedDMG = {
             "id": 3,
             "physical": expectedPhysicalDMG,
+            "dullBladePhysical": 0,
+            "griefBladePhysical": 0,
             "element": expectedElementDMG1,
         }
         let resultOfPart = [
@@ -213,6 +326,7 @@ const ResultTable = (props) => {
         ];
         results[part.parts_id] = resultOfPart;
     }
+    console.log(results);
 
     return (
         <div>
@@ -252,7 +366,17 @@ const ResultTable = (props) => {
                                             {elementType1 != 0 &&
                                                 <span>
                                                     ({result.element})
-                                        </span>
+                                                </span>
+                                            }
+                                            {result.dullBladePhysical > 0 &&
+                                                <span>
+                                                    [{result.dullBladePhysical + result.element}]
+                                                </span>
+                                            }
+                                            {result.griefBladePhysical > 0 &&
+                                                <span>
+                                                    [{result.griefBladePhysical + result.element}]
+                                                </span>
                                             }
                                         </div>
                                     </Td>
@@ -319,6 +443,7 @@ ResultTable.propTypes = {
     equipmentParams: PropTypes.object,
     preQuestParams: PropTypes.object,
     inQuestParams: PropTypes.object,
+    dragonSkillEffect: PropTypes.object,
     skillEffect: PropTypes.object,
 }
 
