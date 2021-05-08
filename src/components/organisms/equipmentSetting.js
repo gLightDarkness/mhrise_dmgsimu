@@ -68,21 +68,27 @@ class EquipmentSetting extends Component {
 
                 <WeaponTypeDropDown handleChange={(type) => this.onChangeWeaponType(type)} />
 
-                <div>
-                    <Label>攻撃力: </Label>
-                    <NumberInput value={this.equipmentParams.weaponOffenseValue} min={0} onChange={(ev) => { this.onChangeWeaponOffenseValue(ev.target.value) }} />
+                <div class="row mb-3">
+                    <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">攻撃力: </Label>
+                    <div class="col-sm-3">
+                        <NumberInput value={this.equipmentParams.weaponOffenseValue} min={0} onChange={(ev) => { this.onChangeWeaponOffenseValue(ev.target.value) }} />
+                    </div>
                 </div>
 
-                <div>
-                    <Label>会心率: </Label>
-                    <NumberInput value={this.equipmentParams.weaponCriticalRate} min={-100} max={100} onChange={(ev) => { this.onChangeWeaponCriticalRate(ev.target.value) }} />
+                <div class="row mb-3">
+                    <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">会心率: </Label>
+                    <div class="col-sm-3">
+                        <NumberInput value={this.equipmentParams.weaponCriticalRate} min={-100} max={100} onChange={(ev) => { this.onChangeWeaponCriticalRate(ev.target.value) }} />
+                    </div>
                 </div>
 
                 <ElementTypeDropdown handleChange={(type) => this.onChangeElementType1(type)} />
 
-                <div>
-                    <Label>属性値: </Label>
-                    <NumberInput value={this.equipmentParams.weaponElementValue1} min={0} onChange={(ev) => { this.onChangeElementValue1(ev.target.value) }} />
+                <div class="row mb-3">
+                    <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">属性値: </Label>
+                    <div class="col-sm-3">
+                        <NumberInput value={this.equipmentParams.weaponElementValue1} min={0} onChange={(ev) => { this.onChangeElementValue1(ev.target.value) }} />
+                    </div>
                 </div>
 
                 <div>
