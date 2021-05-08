@@ -127,21 +127,25 @@ class InQuestSetting extends Component {
                         onChange={(ev) => { this.onTogglePowerSeed(ev.target.checked) }}
                     />
                 </div>
-                <div>
-                    <Label>鬼人薬: </Label>
-                    <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
-                        <Option value={0}>なし</Option>
-                        <Option value={1}>鬼人薬</Option>
-                        <Option value={2}>鬼人薬グレート</Option>
-                    </Select>
+                <div class="row mb-3">
+                    <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">鬼人薬: </Label>
+                    <div class="col-sm-5">
+                        <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
+                            <Option value={0}>なし</Option>
+                            <Option value={1}>鬼人薬</Option>
+                            <Option value={2}>鬼人薬グレート</Option>
+                        </Select>
+                    </div>
                 </div>
-                <div>
-                    <Label>オトモアイルー: </Label>
-                    <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
-                        <Option value={0}>なし</Option>
-                        <Option value={1}>強化太鼓の技</Option>
-                        <Option value={2}>強化咆哮の技</Option>
-                    </Select>
+                <div class="row mb-3">
+                    <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">オトモアイルー: </Label>
+                    <div class="col-sm-5">
+                        <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
+                            <Option value={0}>なし</Option>
+                            <Option value={1}>強化太鼓の技</Option>
+                            <Option value={2}>強化咆哮の技</Option>
+                        </Select>
+                    </div>
                 </div>
                 <div>
                     <InQuestRangeInput

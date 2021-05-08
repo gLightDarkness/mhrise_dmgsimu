@@ -41,35 +41,41 @@ class SkillSetting extends Component {
     render() {
         const selectableList = this.getSelectableSkillList();
         return (
-            <div>
-                <Label>スキル: </Label>
-                <Select onChange={(ev) => { this.onSelectSkill(ev.target.value); }}>
-                    {selectableList.map((item) =>
-                        <Option key={item.id} value={item.id}>
-                            {item.name}
-                        </Option>
-                    )}
-                </Select>
-                <Button type="button" onClick={() => { this.onClickAddButton(); }} class="btn btn-primary">
-                    追加
-                </Button>
-                <Ul>
-                    {this.props.skillInfoList.map((item) =>
-                        <Li key={item.id}>
-                            {item.name} Lv.
-                            <RangeInput
-                                value={item.level}
-                                min={1}
-                                max={item.max_level}
-                                onChange={(ev) => { this.props.onSetSkillLevel(item.id, parseInt(ev.target.value)) }}
-                            />
-                            <Label>{item.level}</Label>
-                            <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }} class="btn btn-danger">
-                                削除
-                            </Button>
-                        </Li>
-                    )}
-                </Ul>
+            <div class="row mb-3">
+                <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label mb-1">スキル: </Label>
+                <div class="col-sm-5">
+                    <Select onChange={(ev) => { this.onSelectSkill(ev.target.value); }}>
+                        {selectableList.map((item) =>
+                            <Option key={item.id} value={item.id}>
+                                {item.name}
+                            </Option>
+                        )}
+                    </Select>
+                </div>
+                <div class="col-sm-3">
+                    <Button type="button" onClick={() => { this.onClickAddButton(); }} class="btn btn-primary">
+                        追加
+                    </Button>
+                </div>
+                <div class="col-sm-12">
+                    <Ul>
+                        {this.props.skillInfoList.map((item) =>
+                            <Li key={item.id}>
+                                {item.name} Lv.
+                                <RangeInput
+                                    value={item.level}
+                                    min={1}
+                                    max={item.max_level}
+                                    onChange={(ev) => { this.props.onSetSkillLevel(item.id, parseInt(ev.target.value)) }}
+                                />
+                                <Label>{item.level}</Label>
+                                <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }} class="btn btn-danger">
+                                    削除
+                                </Button>
+                            </Li>
+                        )}
+                    </Ul>
+                </div>
             </div>
         );
     }

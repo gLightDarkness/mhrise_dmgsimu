@@ -10,15 +10,17 @@ const WeaponTypeDropDown = (props) => {
     const items = baseItems.concat(WeaponType);
 
     return (
-        <div>
-            <Label>武器種: </Label>
-            <Select onChange={(ev) => { props.handleChange(parseInt(ev.target.value)) }}>
-                {items.map((item) =>
-                    <Option key={item.id} value={item.id}>
-                        {item.name}
-                    </Option>
-                )}
-            </Select>
+        <div class="row mb-3">
+            <Label class="col-xl-1 col-md-2 col-sm-3 col-form-label">武器種: </Label>
+            <div class="col-sm-5">
+                <Select onChange={(ev) => { props.handleChange(parseInt(ev.target.value)) }}>
+                    {items.map((item) =>
+                        <Option key={item.id} value={item.id}>
+                            {item.name}
+                        </Option>
+                    )}
+                </Select>
+            </div>
         </div>
     );
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Select = (props) => {
     return (
-        <select onChange={props.onChange}>{props.children}</select>
+        <select onChange={props.onChange} class="form-select">{props.children}</select>
     );
 }
 Select.propTypes = {
