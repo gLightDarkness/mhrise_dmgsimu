@@ -5,16 +5,18 @@ import RangeInput from '../atoms/rangeInput';
 
 const InQuestRangeInput = (props) => {
     return (
-        <div>
-            <Label>{props.label}: </Label>
-            <RangeInput
-                value={props.value}
-                min={props.min}
-                max={props.max}
-                step={props.step}
-                onChange={(ev) => { props.onChangeValue(ev.target.value) }}
-            />
-            <Label>{props.value}</Label>
+        <div class="row mb-3">
+            <Label class="col-xxl-1 col-md-2 col-sm-3 col-5 col-form-label mb-1">{props.label}: </Label>
+            <div class="col-sm-5 col-5">
+                <RangeInput
+                    value={props.value}
+                    min={props.min}
+                    max={props.max}
+                    step={props.step}
+                    onChange={(ev) => { props.onChangeValue(ev.target.value) }}
+                />
+            </div>
+            <Label class="col-sm-1 col-2 col-form-label">{props.value}</Label>
         </div>
     );
 }

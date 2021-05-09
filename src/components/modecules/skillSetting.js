@@ -60,18 +60,22 @@ class SkillSetting extends Component {
                 <div class="col-sm-12">
                     <Ul>
                         {this.props.skillInfoList.map((item) =>
-                            <Li key={item.id}>
-                                {item.name} Lv.
-                                <RangeInput
-                                    value={item.level}
-                                    min={1}
-                                    max={item.max_level}
-                                    onChange={(ev) => { this.props.onSetSkillLevel(item.id, parseInt(ev.target.value)) }}
-                                />
-                                <Label>{item.level}</Label>
-                                <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }} class="btn btn-danger">
-                                    削除
-                                </Button>
+                            <Li key={item.id} class="row mb-1">
+                                <div class="col-xxl-2 col-md-3 col-sm-4 col-12 col-form-label">{item.name} Lv.</div>
+                                <div class="col-sm-3 col-5">
+                                    <RangeInput
+                                        value={item.level}
+                                        min={1}
+                                        max={item.max_level}
+                                        onChange={(ev) => { this.props.onSetSkillLevel(item.id, parseInt(ev.target.value)) }}
+                                    />
+                                </div>
+                                <Label class="col-sm-1 col-2 col-form-label">{item.level}</Label>
+                                <div class="col-sm-3 col-5">
+                                    <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }} class="btn btn-danger">
+                                        削除
+                                    </Button>
+                                </div>
                             </Li>
                         )}
                     </Ul>
