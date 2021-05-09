@@ -171,19 +171,23 @@ class InQuestSetting extends Component {
                         onChangeValue={(value) => { this.onUpdateShiranuiSquid(value) }}
                     />
                 </div>
-                <div>
-                    <Label>ホムラチョウ: </Label>
+                <div class="form-check">
                     <CheckboxInput
+                        id="HomuraButterFly"
                         checked={this.param.isHomuraButterFly}
                         onChange={(ev) => { this.onToggleHomuraButterFly(ev.target.checked) }}
+                        class="form-check-input"
                     />
+                    <Label class="form-check-label" for="HomuraButterFly">ホムラチョウ</Label>
                 </div>
-                <div>
-                    <Label>アミキリアカネ: </Label>
+                <div class="form-check">
                     <CheckboxInput
+                        id="AmikiriDragonFly"
                         checked={this.param.isAmikiriDragonFly}
                         onChange={(ev) => { this.onToggleAmikiriDragonFly(ev.target.checked) }}
+                        class="form-check-input"
                     />
+                    <Label class="form-check-label" for="AmikiriDragonFly">アミキリアカネ</Label>
                 </div>
             </div>
         );

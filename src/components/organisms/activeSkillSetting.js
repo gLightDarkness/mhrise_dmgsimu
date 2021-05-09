@@ -5,6 +5,7 @@ import Li from '../atoms/li';
 import Ul from '../atoms/ul';
 import CheckboxInput from '../atoms/checkboxInput';
 import Defines from '../../defines'
+import Label from '../atoms/label';
 
 const ActiveSkillSettingFunction = (props) => {
     let skillList = props.skillInfoList.concat();
@@ -20,12 +21,16 @@ const ActiveSkillSettingFunction = (props) => {
             }
             <Ul>
                 {skillList.map((skill) =>
-                    <Li key={skill.id}>
-                        {skill.name}
+                    <Li key={skill.id} class="form-check">
                         <CheckboxInput
+                            id={skill.id}
                             checked={skill.enable}
                             onChange={(ev) => {props.onToggleSkillActivate(skill.id, ev.target.checked)}}
+                            class="form-check-input"
                         />
+                        <Label class="form-check-label" for={skill.id}>
+                            {skill.name}
+                        </Label>
                     </Li>
                 )}
             </Ul>
