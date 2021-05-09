@@ -113,19 +113,23 @@ class InQuestSetting extends Component {
                 <h4>
                     ○クエスト中効果
                 </h4>
-                <div>
-                    <Label>鬼人の粉塵: </Label>
+                <div class="form-check">
                     <CheckboxInput
+                        id="PowerPowder"
                         checked={this.param.isPowerPowder}
                         onChange={(ev) => { this.onTogglePowerPowder(ev.target.checked) }}
+                        class="form-check-input"
                     />
+                    <Label class="form-check-label" for="PowerPowder">鬼人の粉塵</Label>
                 </div>
-                <div>
-                    <Label>怪力の種: </Label>
+                <div class="form-check">
                     <CheckboxInput
+                        id="PowerSeed"
                         checked={this.param.isPowerSeed}
                         onChange={(ev) => { this.onTogglePowerSeed(ev.target.checked) }}
+                        class="form-check-input"
                     />
+                    <Label class="form-check-label" for="PowerSeed">怪力の種</Label>
                 </div>
                 <div class="row mb-3">
                     <Label class="col-xxl-1 col-md-2 col-sm-3 col-form-label mb-1">鬼人薬: </Label>

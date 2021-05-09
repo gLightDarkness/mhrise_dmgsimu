@@ -10,7 +10,7 @@ const Li = (props) => {
 }
 Li.propTypes = {
     children: PropTypes.node,
-    class: PropTypes.string
+    class: PropTypes.string,
 }
 
 export default Li;
