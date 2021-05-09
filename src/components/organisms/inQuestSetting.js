@@ -132,8 +132,8 @@ class InQuestSetting extends Component {
                     <Label class="form-check-label" for="PowerSeed">怪力の種</Label>
                 </div>
                 <div class="row mb-3">
-                    <Label class="col-xxl-1 col-md-2 col-sm-3 col-form-label mb-1">鬼人薬: </Label>
-                    <div class="col-sm-5">
+                    <Label class="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">鬼人薬: </Label>
+                    <div class="col-sm-5 col-5">
                         <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
                             <Option value={0}>なし</Option>
                             <Option value={1}>鬼人薬</Option>
@@ -142,8 +142,8 @@ class InQuestSetting extends Component {
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <Label class="col-xxl-1 col-md-2 col-sm-3 col-form-label mb-1">オトモアイルー: </Label>
-                    <div class="col-sm-5">
+                    <Label class="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">ｵﾄﾓｱｲﾙｰ: </Label>
+                    <div class="col-sm-5 col-5">
                         <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
                             <Option value={0}>なし</Option>
                             <Option value={1}>強化太鼓の技</Option>
@@ -153,7 +153,7 @@ class InQuestSetting extends Component {
                 </div>
                 <div>
                     <InQuestRangeInput
-                        label="ヒトダマドリ"
+                        label="ﾋﾄﾀﾞﾏﾄﾞﾘ"
                         value={this.param.soulBirdAddValue}
                         min={0}
                         max={20}
@@ -163,7 +163,7 @@ class InQuestSetting extends Component {
                 </div>
                 <div>
                     <InQuestRangeInput
-                        label="シラヌイカ"
+                        label="ｼﾗﾇｲｶ"
                         value={this.param.shiranuiSquidAddValue}
                         min={0}
                         max={50}

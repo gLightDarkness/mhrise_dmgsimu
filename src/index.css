@@ -12,3 +12,5 @@ th{font-weight: 400; text-align: left;}
 /* 切れ味無効 */
 .sharpness-disabled { color: #000;background-color: silver;border-color: dimgray;}
 .input-range { width: 100%; height: 2.3rem; padding: 0; }
+/* ボタンの位置を揃えるためにリストの横パディングをbootstrap標準より削除 */
+.list-group-item { padding: .5rem 0rem !important; }
