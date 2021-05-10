@@ -18,9 +18,8 @@ const SharpnessButtons = (props) => {
                 return (
                     <Button
                         key={item.id}
-                        disabled={(item.id == props.currentID)}
                         onClick={() => { props.handleChange(parseInt(item.id))}}
-                        class={(item.id == props.currentID) ? "btn sharpness-disabled" : btnCss }>
+                        class={(item.id == props.currentID) ? btnCss  + " sharpness-selected" : btnCss }>
                             {item.name}
                     </Button>
                 )

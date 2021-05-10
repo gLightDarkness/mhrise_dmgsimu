@@ -62,9 +62,9 @@ class EquipmentSetting extends Component {
     render() {
         return (
             <div>
-                <h4>
+                <h2>
                     ○装備設定
-                </h4>
+                </h2>
 
                 <WeaponTypeDropDown handleChange={(type) => this.onChangeWeaponType(type)} />
 

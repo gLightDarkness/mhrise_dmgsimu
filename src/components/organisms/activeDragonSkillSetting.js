@@ -15,7 +15,7 @@ const ActiveDragonSkillSettingFunction = (props) => {
     return (
         <div>
             {skillList.length > 0 &&
-                <h4> {props.heading} </h4>
+                <h2> {props.heading} </h2>
             }
             <Ul>
                 {skillList.map((skill) =>

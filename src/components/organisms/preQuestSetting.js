@@ -49,9 +49,9 @@ class PreQuestSetting extends PureComponent {
     render() {
         return (
             <div>
-                <h4>
+                <h2>
                     ○準備効果
-                </h4>
+                </h2>
                 <div class="form-check">
                     <CheckboxInput
                         id="PowerAmulet"

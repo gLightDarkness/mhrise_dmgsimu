@@ -110,9 +110,9 @@ class InQuestSetting extends Component {
     render() {
         return (
             <div>
-                <h4>
+                <h2>
                     ○クエスト中効果
-                </h4>
+                </h2>
                 <div class="form-check">
                     <CheckboxInput
                         id="PowerPowder"

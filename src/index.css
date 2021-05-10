@@ -1,16 +1,13 @@
-div#root {padding: 10px}
-button {margin: 0 10px;}
-table {margin-top: 20px;}
-th{font-weight: 400; text-align: left;}
+
 /* 切れ味有効 */
-.sharpness-red { color: #000;background-color: red;border-color: crimson;}
-.sharpness-orange { color: #000;background-color: orange;border-color: sandybrown;}
-.sharpness-yellow { color: #000;background-color: yellow;border-color: khaki;}
-.sharpness-green { color: #000;background-color: mediumseagreen;border-color: seagreen;}
-.sharpness-blue { color: #000;background-color: deepskyblue;border-color: dodgerblue;}
-.sharpness-white { color: #000;background-color: white ;border-color: gainsboro;}
+.sharpness-red { color: #808080;background-color: #ff8989;border-color: crimson; border-width: 0px; margin: 0 3px;}
+.sharpness-orange { color: #808080;background-color: #ffc489;border-color: sandybrown; border-width: 0px; margin: 0 3px;}
+.sharpness-yellow { color: #808080;background-color: #ffff89;border-color: khaki; border-width: 0px; margin: 0 3px;}
+.sharpness-green { color: #808080;background-color: #89ff89;border-color: seagreen; border-width: 0px; margin: 0 3px;}
+.sharpness-blue { color: #808080;background-color: #89c4ff;border-color: dodgerblue; border-width: 0px; margin: 0 3px;}
+.sharpness-white { color: #808080;background-color: #f7f7f7 ;border-color: gainsboro; border-width: 0px; margin: 0 3px;}
 /* 切れ味無効 */
-.sharpness-disabled { color: #000;background-color: silver;border-color: dimgray;}
+.sharpness-selected { border-width: 2px; color: #000;}
 .input-range { width: 100%; height: 2.3rem; padding: 0; }
 /* ボタンの位置を揃えるためにリストの横パディングをbootstrap標準より削除 */
 .list-group-item { padding: .5rem 0rem !important; }
