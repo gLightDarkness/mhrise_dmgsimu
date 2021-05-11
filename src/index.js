@@ -1,7 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import DamageSimulator from './components/pages/damageSimulator';
 
 ReactDOM.render(
-	<h1>Hello, world!!</h1>,
+	<DamageSimulator />,
 	document.getElementById('root')
 );
