@@ -42,7 +42,7 @@ class SkillSetting extends Component {
         const selectableList = this.getSelectableSkillList();
         return (
             <div class="row mb-3">
-                <Label class="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">
+                <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">
                     ｽｷﾙ: 
                 </Label>
                 <div class="col-sm-5 col-5">
@@ -55,14 +55,14 @@ class SkillSetting extends Component {
                     </Select>
                 </div>
                 <div class="col-sm-3 col-4">
-                    <Button type="button" onClick={() => { this.onClickAddButton(); }} class="btn btn-primary">
+                    <Button type="button" onClick={() => { this.onClickAddButton(); }} className="btn btn-primary">
                         追加
                     </Button>
                 </div>
                 <div class="col-sm-8 col-12">
-                    <Ul class="list-group list-group-flush">
+                    <Ul className="list-group list-group-flush">
                         {this.props.skillInfoList.map((item) =>
-                            <Li key={item.id} class="list-group-item">
+                            <Li key={item.id} className="list-group-item">
                                 <div class="row">
                                     <div class="col-4 col-form-label">{item.name} Lv.</div>
                                     <div class="col-3">
@@ -73,9 +73,11 @@ class SkillSetting extends Component {
                                             onChange={(ev) => { this.props.onSetSkillLevel(item.id, parseInt(ev.target.value)) }}
                                         />
                                     </div>
-                                    <Label class="col-1 col-form-label">{item.level}</Label>
+                                    <Label className="col-1 col-form-label">{item.level}</Label>
                                     <div class="col-4">
-                                        <Button type="button" onClick={() => { this.props.onRemoveSkill(item.id); }} class="btn btn-danger">
+                                        <Button type="button"
+                                                onClick={() => { this.props.onRemoveSkill(item.id); }}
+                                                className="btn btn-danger">
                                             削除
                                         </Button>
                                     </div>

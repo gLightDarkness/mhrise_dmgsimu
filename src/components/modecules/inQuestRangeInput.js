@@ -6,7 +6,7 @@ import RangeInput from '../atoms/rangeInput';
 const InQuestRangeInput = (props) => {
     return (
         <div class="row mb-3">
-            <Label class="col-4 col-form-label mb-1">{props.label}: </Label>
+            <Label className="col-4 col-form-label mb-1">{props.label}: </Label>
             <div class="col-3">
                 <RangeInput
                     value={props.value}
@@ -16,7 +16,7 @@ const InQuestRangeInput = (props) => {
                     onChange={(ev) => { props.onChangeValue(ev.target.value) }}
                 />
             </div>
-            <Label class="col-1 col-form-label">{props.value}</Label>
+            <Label className="col-1 col-form-label">{props.value}</Label>
         </div>
     );
 }

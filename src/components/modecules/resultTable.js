@@ -333,20 +333,20 @@ const ResultTable = (props) => {
             <h2>
                 ○結果
             </h2>
-            <Label class="col-4 mb-2 text-danger">
+            <Label className="col-4 mb-2 text-danger">
                 <strong>攻撃力: {offenseValue}</strong>
             </Label>
-            <Label class="col-4 text-danger">
+            <Label className="col-4 text-danger">
                 <strong>会心率: {criticalRate}</strong>
             </Label>
             {elementType1 != 0 &&
-                <Label class="col-4 text-danger">
+                <Label className="col-4 text-danger">
                     <strong>属性: {elementTypeStr1} {elementValue1}</strong>
                 </Label>
             }
 
             <div>
-                <Table class="table table-striped">
+                <Table className="table table-striped">
                     <Thead>
                         <Tr>
                             {headers.map((item) =>
@@ -390,7 +390,7 @@ const ResultTable = (props) => {
 
             <div>
                 <h3>□肉質一覧</h3>
-                <Table class="table table-striped">
+                <Table className="table table-striped">
                     <Thead>
                         <Tr>
                             {hardnessHeaders.map((item) =>

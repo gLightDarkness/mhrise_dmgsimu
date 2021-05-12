@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Ul = (props) => {
     return (
-        <ul type={props.type} class={props.class}>
+        <ul type={props.type} class={props.className}>
             {props.children}
         </ul>
     );
@@ -11,7 +11,7 @@ const Ul = (props) => {
 Ul.propTypes = {
     children: PropTypes.node,
     type: PropTypes.string,
-    class: PropTypes.string,
+    className: PropTypes.string,
 }
 
 export default Ul;

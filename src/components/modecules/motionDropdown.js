@@ -58,7 +58,7 @@ class MotionDropdown extends Component {
 
         return (
             <div class="row mb-3">
-                <Label class="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">ｱｸｼｮﾝ: </Label>
+                <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">ｱｸｼｮﾝ: </Label>
                 <div class="col-sm-5 col-5">
                     <Select onChange={(ev) => { this.onChangeMotion(parseInt(ev.target.value)) }}>
                         {this.items.map((item) =>

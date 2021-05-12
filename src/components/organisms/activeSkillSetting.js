@@ -21,14 +21,14 @@ const ActiveSkillSettingFunction = (props) => {
             }
             <Ul>
                 {skillList.map((skill) =>
-                    <Li key={skill.id} class="form-check">
+                    <Li key={skill.id} className="form-check">
                         <CheckboxInput
                             id={skill.id}
                             checked={skill.enable}
                             onChange={(ev) => {props.onToggleSkillActivate(skill.id, ev.target.checked)}}
-                            class="form-check-input"
+                            className="form-check-input"
                         />
-                        <Label class="form-check-label" for={skill.id}>
+                        <Label className="form-check-label" for={skill.id}>
                             {skill.name}
                         </Label>
                     </Li>
