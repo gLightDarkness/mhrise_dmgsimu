@@ -333,23 +333,24 @@ const ResultTable = (props) => {
     console.log(results);
 
     return (
-        <div>
-            <Label>
-                攻撃力: {offenseValue}
+        <div class="row">
+            <h2>
+                ○結果
+            </h2>
+            <Label className="col-4 mb-2 text-danger">
+                <strong>攻撃力: {offenseValue}</strong>
             </Label>
-            <Label>
-                会心率: {criticalRate}
+            <Label className="col-4 text-danger">
+                <strong>会心率: {criticalRate}</strong>
             </Label>
             {elementType1 != 0 &&
-                <div>
-                    <Label>
-                        属性: {elementTypeStr1} {elementValue1}
-                    </Label>
-                </div>
+                <Label className="col-4 text-danger">
+                    <strong>属性: {elementTypeStr1} {elementValue1}</strong>
+                </Label>
             }
 
             <div>
-                <Table>
+                <Table className="table table-striped">
                     <Thead>
                         <Tr>
                             {headers.map((item) =>
@@ -392,8 +393,8 @@ const ResultTable = (props) => {
             </div>
 
             <div>
-                <Label>□肉質一覧</Label>
-                <Table>
+                <h3>□肉質一覧</h3>
+                <Table className="table table-striped">
                     <Thead>
                         <Tr>
                             {hardnessHeaders.map((item) =>
