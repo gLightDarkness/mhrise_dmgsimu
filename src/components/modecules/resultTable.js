@@ -79,9 +79,13 @@ const ResultTable = (props) => {
             <div></div>
         );
     }
+    let sharpnessCoeff = 1.0;
+    if(motion.sharpness_coeff != "") {
+        sharpnessCoeff = motion.sharpnessCoeff;
+    }
     sharpness = sharpness[0];
-    const sharpnessPhysicalRate = sharpness.physical_rate;
-    const sharpnessElementRate = sharpness.element_rate;
+    const sharpnessPhysicalRate = sharpness.physical_rate * sharpnessCoeff;
+    const sharpnessElementRate = sharpness.element_rate * sharpnessCoeff;
 
     // 攻撃力計算
     let offenseValue = offenseBaseValue;
