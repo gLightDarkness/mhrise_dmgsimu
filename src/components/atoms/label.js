@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Label = (props) => {
     return (
-        <label class={props.className} for={props.for}>{props.children}</label>
+        <label className={props.className} htmlFor={props.for}>{props.children}</label>
     );
 }
 Label.propTypes = {

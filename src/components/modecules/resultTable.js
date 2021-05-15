@@ -333,7 +333,7 @@ const ResultTable = (props) => {
     console.log(results);
 
     return (
-        <div class="row">
+        <div className="row">
             <h2>
                 ○結果
             </h2>

@@ -5,9 +5,9 @@ import RangeInput from '../atoms/rangeInput';
 
 const InQuestRangeInput = (props) => {
     return (
-        <div class="row mb-3">
+        <div className="row mb-3">
             <Label className="col-4 col-form-label mb-1">{props.label}: </Label>
-            <div class="col-3">
+            <div className="col-3">
                 <RangeInput
                     value={props.value}
                     min={props.min}

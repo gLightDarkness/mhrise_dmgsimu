@@ -10,7 +10,7 @@ const NumberInput = (props) => {
             max={props.max}
             step={props.step}
             onChange={props.onChange}
-            class="form-control"
+            className="form-control"
         />
     );
 }

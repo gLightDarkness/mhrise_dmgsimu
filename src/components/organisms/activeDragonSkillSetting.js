@@ -21,7 +21,6 @@ const ActiveDragonSkillSettingFunction = (props) => {
                 {skillList.map((skill) =>
                     <Li key={skill.id} className="form-check">
                         <CheckboxInput
-                            id={skill.id}
                             checked={skill.enable}
                             onChange={(ev) => {props.onToggleSkillActivate(skill.id, ev.target.checked)}}
                             className="form-check-input"

@@ -113,7 +113,7 @@ class InQuestSetting extends Component {
                 <h2>
                     ○クエスト中効果
                 </h2>
-                <div class="form-check">
+                <div className="form-check">
                     <CheckboxInput
                         id="PowerPowder"
                         checked={this.param.isPowerPowder}
@@ -122,7 +122,7 @@ class InQuestSetting extends Component {
                     />
                     <Label className="form-check-label" for="PowerPowder">鬼人の粉塵</Label>
                 </div>
-                <div class="form-check">
+                <div className="form-check">
                     <CheckboxInput
                         id="PowerSeed"
                         checked={this.param.isPowerSeed}
@@ -131,9 +131,9 @@ class InQuestSetting extends Component {
                     />
                     <Label className="form-check-label" for="PowerSeed">怪力の種</Label>
                 </div>
-                <div class="row mb-3">
+                <div className="row mb-3">
                     <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">鬼人薬: </Label>
-                    <div class="col-sm-5 col-5">
+                    <div className="col-sm-5 col-5">
                         <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
                             <Option value={0}>なし</Option>
                             <Option value={1}>鬼人薬</Option>
@@ -141,9 +141,9 @@ class InQuestSetting extends Component {
                         </Select>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div className="row mb-3">
                     <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">ｵﾄﾓｱｲﾙｰ: </Label>
-                    <div class="col-sm-5 col-5">
+                    <div className="col-sm-5 col-5">
                         <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
                             <Option value={0}>なし</Option>
                             <Option value={1}>強化太鼓の技</Option>
@@ -171,7 +171,7 @@ class InQuestSetting extends Component {
                         onChangeValue={(value) => { this.onUpdateShiranuiSquid(value) }}
                     />
                 </div>
-                <div class="form-check">
+                <div className="form-check">
                     <CheckboxInput
                         id="HomuraButterFly"
                         checked={this.param.isHomuraButterFly}
@@ -180,7 +180,7 @@ class InQuestSetting extends Component {
                     />
                     <Label className="form-check-label" for="HomuraButterFly">ホムラチョウ</Label>
                 </div>
-                <div class="form-check">
+                <div className="form-check">
                     <CheckboxInput
                         id="AmikiriDragonFly"
                         checked={this.param.isAmikiriDragonFly}
