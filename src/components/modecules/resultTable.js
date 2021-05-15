@@ -81,7 +81,7 @@ const ResultTable = (props) => {
     }
     let sharpnessCoeff = 1.0;
     if(motion.sharpness_coeff != "") {
-        sharpnessCoeff = motion.sharpnessCoeff;
+        sharpnessCoeff = motion.sharpness_coeff;
     }
     sharpness = sharpness[0];
     const sharpnessPhysicalRate = sharpness.physical_rate * sharpnessCoeff;
