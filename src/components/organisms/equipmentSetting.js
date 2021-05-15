@@ -6,17 +6,26 @@ import Label from '../atoms/label';
 import ElementTypeDropdown from '../modecules/elementTypeDropdown';
 import SkillSetting from '../modecules/skillSetting';
 import DragonSkillSettingFree from '../modecules/dragonSkillSettingFree';
+import WeaponSelectDropdown from '../modecules/weaponSelectDropdown';
 
 class EquipmentSetting extends Component {
     constructor(props) {
         super(props);
         this.equipmentParams = props.equipmentParams;
         this.handleUpdate = props.handleUpdate;
+        this.state = {
+            weaponType : 0
+        };
     }
 
     onChangeWeaponType(type) {
         this.equipmentParams.weaponType = type;
         this.handleUpdate(this.equipmentParams);
+
+        this.setState({ weaponType: type });
+    }
+
+    onChangeSelectWeapon(weapon) {
     }
 
     onChangeWeaponOffenseValue(value) {
@@ -68,7 +77,12 @@ class EquipmentSetting extends Component {
 
                 <WeaponTypeDropDown handleChange={(type) => this.onChangeWeaponType(type)} />
 
-                <div className="row mb-3">
+                <WeaponSelectDropdown
+                    handleChange={(weapon) => this.onChangeSelectWeapon(weapon)}
+                    weaponType={this.state.weaponType}
+                />
+
+                <div class="row mb-3">
                     <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">攻撃力: </Label>
                     <div className="col-sm-3 col-5">
                         <NumberInput value={this.equipmentParams.weaponOffenseValue} min={0} onChange={(ev) => { this.onChangeWeaponOffenseValue(ev.target.value) }} />
