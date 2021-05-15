@@ -49,29 +49,35 @@ class PreQuestSetting extends PureComponent {
     render() {
         return (
             <div>
-                <h4>
+                <h2>
                     ○準備効果
-                </h4>
-                <div>
-                    <Label>力の護符: </Label>
+                </h2>
+                <div class="form-check">
                     <CheckboxInput
+                        id="PowerAmulet"
                         checked={this.param.isPowerAmulet}
                         onChange={(ev) => { this.onTogglePowerAmulet(ev.target.checked) }}
+                        className="form-check-input"
                     />
+                    <Label className="form-check-label" for="PowerAmulet">力の護符</Label>
                 </div>
-                <div>
-                    <Label>力の爪: </Label>
+                <div class="form-check">
                     <CheckboxInput
+                        id="PowerClaws"
                         checked={this.param.isPowerClaws}
                         onChange={(ev) => { this.onTogglePowerClaws(ev.target.checked) }}
+                        className="form-check-input"
                     />
+                    <Label className="form-check-label" for="PowerClaws">力の爪</Label>
                 </div>
-                <div>
-                    <Label>お団子短期催眠術: </Label>
+                <div class="form-check">
                     <CheckboxInput
+                        id="HypnosisMeal"
                         checked={this.param.isHypnosisMeal}
                         onChange={(ev) => { this.onToggleHypnosisMeal(ev.target.checked) }}
+                        className="form-check-input"
                     />
+                    <Label className="form-check-label" for="HypnosisMeal">お団子短期催眠術</Label>
                 </div>
             </div>
         );

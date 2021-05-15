@@ -60,19 +60,21 @@ class ResultArea extends Component {
         this.calcResultObj();
         return (
             <div>
-                <h4>
-                    ○結果
-                </h4>
-                <MonsterDropdown handleChange={(value) => { this.onChangeMonster(value) }} />
-                <MotionDropdown
-                    weaponType={this.state.equipmentParams.weaponType}
-                    handleChangeID={(motionID) => { this.onChangeMotionID(motionID) }}
-                />
-                <SharpnessButtons
-                    type="button"
-                    currentID={this.state.sharpness}
-                    handleChange={(value) => { this.onChangeSharpness(value) }}
-                />
+                <div class="mb-3">
+                    <h2>
+                        ○戦闘状況
+                    </h2>
+                    <MonsterDropdown handleChange={(value) => { this.onChangeMonster(value) }} />
+                    <MotionDropdown
+                        weaponType={this.state.equipmentParams.weaponType}
+                        handleChangeID={(motionID) => { this.onChangeMotionID(motionID) }}
+                    />
+                    <SharpnessButtons
+                        type="button"
+                        currentID={this.state.sharpness}
+                        handleChange={(value) => { this.onChangeSharpness(value) }}
+                    />
+                </div>
                 <ResultTable
                     monsterID={this.state.monsterID}
                     motionID={this.state.motionID}

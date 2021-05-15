@@ -4,6 +4,7 @@ import Li from '../atoms/li';
 import Ul from '../atoms/ul';
 import CheckboxInput from '../atoms/checkboxInput';
 import Defines from '../../defines'
+import Label from '../atoms/label';
 
 const ActiveDragonSkillSettingFunction = (props) => {
     let skillList = props.skillInfoList.concat();
@@ -14,16 +15,18 @@ const ActiveDragonSkillSettingFunction = (props) => {
     return (
         <div>
             {skillList.length > 0 &&
-                <h4> {props.heading} </h4>
+                <h2> {props.heading} </h2>
             }
             <Ul>
                 {skillList.map((skill) =>
-                    <Li key={skill.id}>
-                        {skill.name}
+                    <Li key={skill.id} className="form-check">
                         <CheckboxInput
+                            id={skill.id}
                             checked={skill.enable}
                             onChange={(ev) => {props.onToggleSkillActivate(skill.id, ev.target.checked)}}
+                            className="form-check-input"
                         />
+                        <Label className="form-check-label" for={skill.id}>{skill.name}</Label>
                     </Li>
                 )}
             </Ul>
