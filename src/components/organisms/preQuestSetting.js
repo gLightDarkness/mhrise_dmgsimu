@@ -52,7 +52,7 @@ class PreQuestSetting extends PureComponent {
                 <h2>
                     ○準備効果
                 </h2>
-                <div class="form-check">
+                <div className="form-check">
                     <CheckboxInput
                         id="PowerAmulet"
                         checked={this.param.isPowerAmulet}
@@ -61,7 +61,7 @@ class PreQuestSetting extends PureComponent {
                     />
                     <Label className="form-check-label" for="PowerAmulet">力の護符</Label>
                 </div>
-                <div class="form-check">
+                <div className="form-check">
                     <CheckboxInput
                         id="PowerClaws"
                         checked={this.param.isPowerClaws}
@@ -70,7 +70,7 @@ class PreQuestSetting extends PureComponent {
                     />
                     <Label className="form-check-label" for="PowerClaws">力の爪</Label>
                 </div>
-                <div class="form-check">
+                <div className="form-check">
                     <CheckboxInput
                         id="HypnosisMeal"
                         checked={this.param.isHypnosisMeal}

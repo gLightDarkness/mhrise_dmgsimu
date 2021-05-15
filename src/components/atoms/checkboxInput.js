@@ -8,7 +8,7 @@ const CheckboxInput = (props) => {
             value={props.value}
             checked={props.checked}
             onChange={props.onChange}
-            class={props.className}
+            className={props.className}
             id={props.id}
         />
     );
@@ -18,7 +18,7 @@ CheckboxInput.propTypes = {
     checked: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
-    id: PropTypes.id,
+    id: PropTypes.string,
 }
 
 export default CheckboxInput;

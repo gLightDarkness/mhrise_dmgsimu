@@ -45,9 +45,9 @@ class DragonSkillFree extends Component {
     render() {
         const selectableList = this.getSelectableSkillList();
         return (
-            <div class="row mb-3">
+            <div className="row mb-3">
                 <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">百竜ｽｷﾙ: </Label>
-                <div class="col-sm-5 col-5">
+                <div className="col-sm-5 col-5">
                     <Select onChange={(ev) => { this.onSelectSkill(ev.target.value); }}>
                         {selectableList.map((item) =>
                             <Option key={item.id} value={item.id}>
@@ -56,20 +56,20 @@ class DragonSkillFree extends Component {
                         )}
                     </Select>
                 </div>
-                <div class="col-sm-3 col-4">
+                <div className="col-sm-3 col-4">
                     <Button type="button" onClick={() => { this.onClickAddButton(); }} className="btn btn-primary">
                         追加
                     </Button>
                 </div>
-                <div class="col-sm-8 col-12">
+                <div className="col-sm-8 col-12">
                     <Ul className="list-group list-group-flush">
                         {this.props.skillInfoList.map((item) =>
                             <Li key={item.id} className="list-group-item">
-                                <div class="row">
-                                    <div class="col-8 col-form-label mb-1">
+                                <div className="row">
+                                    <div className="col-8 col-form-label mb-1">
                                         {item.name}
                                     </div>
-                                    <div class="col-4">
+                                    <div className="col-4">
                                         <Button type="button"
                                                 onClick={() => { this.props.onRemoveSkill(item.id); }}
                                                 className="btn btn-danger">

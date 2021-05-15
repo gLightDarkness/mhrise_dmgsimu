@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Ul = (props) => {
     return (
-        <ul type={props.type} class={props.className}>
+        <ul type={props.type} className={props.className}>
             {props.children}
         </ul>
     );

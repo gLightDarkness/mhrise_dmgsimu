@@ -60,7 +60,7 @@ class ResultArea extends Component {
         this.calcResultObj();
         return (
             <div>
-                <div class="mb-3">
+                <div className="mb-3">
                     <h2>
                         ○戦闘状況
                     </h2>
