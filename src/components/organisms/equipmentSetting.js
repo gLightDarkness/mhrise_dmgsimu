@@ -1,134 +1,65 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import WeaponTypeDropDown from '../modecules/weaponTypeDropdown';
-import NumberInput from '../atoms/numberInput';
-import Label from '../atoms/label';
-import ElementTypeDropdown from '../modecules/elementTypeDropdown';
 import SkillSetting from '../modecules/skillSetting';
-import DragonSkillSettingFree from '../modecules/dragonSkillSettingFree';
+import DragonSkillSetting from '../modecules/dragonSkillSetting'
 import WeaponSelectDropdown from '../modecules/weaponSelectDropdown';
+import WeaponParamManualSetting from '../modecules/weaponParamManualSetting';
+import WeaponParamView from '../modecules/weaponParamView';
 
-class EquipmentSetting extends Component {
-    constructor(props) {
-        super(props);
-        this.equipmentParams = props.equipmentParams;
-        this.handleUpdate = props.handleUpdate;
-        this.state = {
-            weaponType : 0
-        };
-    }
+const EquipmentSetting = (props) => {
+    return (
+        <div>
+            <h2>
+                ○装備設定
+            </h2>
 
-    onChangeWeaponType(type) {
-        this.equipmentParams.weaponType = type;
-        this.handleUpdate(this.equipmentParams);
+            <WeaponTypeDropDown handleChange={(type) => props.onChangeWeaponType(type)} />
 
-        this.setState({ weaponType: type });
-    }
+            <WeaponSelectDropdown
+                handleChange={(weaponID) => props.onChangeWeapon(weaponID)}
+                weaponType={props.weaponParam.type}
+            />
 
-    onChangeSelectWeapon(weapon) {
-    }
-
-    onChangeWeaponOffenseValue(value) {
-        if(value) {
-            value = parseInt(value);
-        } else {
-            return;
-        }
-        this.equipmentParams.weaponOffenseValue = value;
-        this.handleUpdate(this.equipmentParams);
-    }
-
-    onChangeWeaponCriticalRate(value) {
-        if(value) {
-            value = parseInt(value);
-        } else {
-            return;
-        }
-        this.equipmentParams.weaponCriticalRate = value;
-        this.handleUpdate(this.equipmentParams);
-    }
-
-    onChangeElementType1(type) {
-        if(type) {
-            type = parseInt(type);
-        } else {
-            return;
-        }
-        this.equipmentParams.weaponElement1 = type;
-        this.handleUpdate(this.equipmentParams);
-    }
-
-    onChangeElementValue1(value) {
-        if(value) {
-            value = parseInt(value);
-        } else {
-            return;
-        }
-        this.equipmentParams.weaponElementValue1 = value;
-        this.handleUpdate(this.equipmentParams);
-    }
-
-    render() {
-        return (
-            <div>
-                <h2>
-                    ○装備設定
-                </h2>
-
-                <WeaponTypeDropDown handleChange={(type) => this.onChangeWeaponType(type)} />
-
-                <WeaponSelectDropdown
-                    handleChange={(weapon) => this.onChangeSelectWeapon(weapon)}
-                    weaponType={this.state.weaponType}
+            {props.weaponParam.weaponID == 0
+                ?
+                <WeaponParamManualSetting
+                    weapon={props.weaponParam}
+                    onChangeParam={(ov, cr, et, ev) => props.onChangeWeaponParam(ov, cr, et, ev)}
                 />
+                :
+                <WeaponParamView
+                    weapon={props.weaponParam}
+                />
+            }
 
-                <div class="row mb-3">
-                    <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">攻撃力: </Label>
-                    <div className="col-sm-3 col-5">
-                        <NumberInput value={this.equipmentParams.weaponOffenseValue} min={0} onChange={(ev) => { this.onChangeWeaponOffenseValue(ev.target.value) }} />
-                    </div>
-                </div>
-
-                <div className="row mb-3">
-                    <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">会心率: </Label>
-                    <div className="col-sm-3 col-5">
-                        <NumberInput value={this.equipmentParams.weaponCriticalRate} min={-100} max={100} onChange={(ev) => { this.onChangeWeaponCriticalRate(ev.target.value) }} />
-                    </div>
-                </div>
-
-                <ElementTypeDropdown handleChange={(type) => this.onChangeElementType1(type)} />
-
-                <div className="row mb-3">
-                    <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">属性値: </Label>
-                    <div className="col-sm-3 col-5">
-                        <NumberInput value={this.equipmentParams.weaponElementValue1} min={0} onChange={(ev) => { this.onChangeElementValue1(ev.target.value) }} />
-                    </div>
-                </div>
-
-                <div>
-                    <DragonSkillSettingFree
-                        skillInfoList={this.props.dragonSkillInfoList}
-                        onAddSkill={this.props.onAddDragonSkill}
-                        onRemoveSkill={this.props.onRemoveDragonSkill}
-                    />
-                </div>
-
-                <div>
-                    <SkillSetting
-                        skillInfoList={this.props.skillInfoList}
-                        onAddSkill={this.props.onAddSkill}
-                        onSetSkillLevel={this.props.onSetSkillLevel}
-                        onRemoveSkill={this.props.onRemoveSkill}
-                    />
-                </div>
+            <div>
+                <DragonSkillSetting
+                    skillInfoList={props.dragonSkillInfoList}
+                    onAddSkill={props.onAddDragonSkill}
+                    onRemoveSkill={props.onRemoveDragonSkill}
+                    skillSetID={props.weaponParam.dragonSkillSetID}
+                    skillSetNum={props.weaponParam.dragonSkillSlotNum}
+                />
             </div>
-        );
-    }
+
+            <div>
+                <SkillSetting
+                    skillInfoList={props.skillInfoList}
+                    onAddSkill={props.onAddSkill}
+                    onSetSkillLevel={props.onSetSkillLevel}
+                    onRemoveSkill={props.onRemoveSkill}
+                />
+            </div>
+        </div>
+    );
 }
 
 EquipmentSetting.propTypes = {
-    equipmentParams: PropTypes.object,
-    handleUpdate: PropTypes.func,
+    onChangeWeaponType: PropTypes.func,
+    weaponParam: PropTypes.object,
+    onChangeWeapon: PropTypes.func,
+    onChangeWeaponParam: PropTypes.func,
     skillInfoList: PropTypes.array,
     onAddSkill: PropTypes.func,
     onSetSkillLevel: PropTypes.func,
@@ -137,5 +68,4 @@ EquipmentSetting.propTypes = {
     onAddDragonSkill: PropTypes.func,
     onRemoveDragonSkill: PropTypes.func,
 }
-
 export default EquipmentSetting;

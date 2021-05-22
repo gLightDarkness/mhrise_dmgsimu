@@ -34,6 +34,10 @@ class DragonSkillSet {
         });
     }
 
+    removeSkillAll() {
+        this.skills = [];
+    }
+
     getSkillInfoList() {
         let ret = [];
         this.skills.forEach((s) => {

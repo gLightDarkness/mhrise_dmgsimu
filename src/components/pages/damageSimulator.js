@@ -7,27 +7,12 @@ import SkillSet from '../../models/skillSet'
 import { ActiveSkillSetting } from '../organisms/activeSkillSetting';
 import DragonSkillSet from '../../models/dragonSkillSet';
 import { ActiveDragonSkillSetting } from '../organisms/activeDragonSkillSetting';
+import WeaponParam from '../../models/weaponParam';
 
 class DamageSimulator extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            equipmentParams: {
-                weaponType: 0,
-                weaponOffenseValue: 0,
-                weaponCriticalRate: 0,
-                weaponElement1: 0,
-                weaponElementValue1: 0,
-                weaponElement2: 0,
-                weaponElementValue2: 0,
-
-                // 素の値をベースに上昇させる系。使わないかも
-                addOffenseBaseValue: 0,
-                mulOffenseBaseCoeff: 0,
-                addCriticalBaseRate: 0,
-                addElementBaseValue: 0,
-                mulElementBaseCoeff: 0,
-            },
             preQuestParams: {
                 addOffenceValue: 0,
             },
@@ -38,14 +23,34 @@ class DamageSimulator extends Component {
                 addElementValue: 0,
                 badConditionWater: false,
             },
-            dragonSkillIds: [],
         }
+        this.weapon = new WeaponParam();
         this.skillSet = new SkillSet();
         this.dragonSkillSet = new DragonSkillSet();
     }
 
-    handleEquipmentParamUpdate(params) {
-        this.setState({ equipmentParams: params });
+    onChangeWeaponType(weaponType) {
+        this.weapon.reset();
+        this.weapon.type = weaponType;
+        this.dragonSkillSet.removeSkillAll();
+        this.forceUpdate();
+    }
+
+    onChangeWeapon(weaponID) {
+        this.weapon.setWeapon(weaponID);
+        this.dragonSkillSet.removeSkillAll();
+        this.forceUpdate();
+    }
+
+    onChangeWeaponParam(offenseVal, criticalRate, elementType, elementVal) {
+        if(this.weapon.weaponID != 0) {
+            return;
+        }
+        this.weapon.setOffenseValue(offenseVal);
+        this.weapon.setCriticalRate(criticalRate);
+        this.weapon.setElementType(elementType);
+        this.weapon.setElementValue(elementVal);
+        this.forceUpdate();
     }
 
     handlePreQuestParamUpdate(params) {
@@ -62,18 +67,20 @@ class DamageSimulator extends Component {
 
     render() {
         const dragonSkillEffect = this.dragonSkillSet.getSkillEffect(
-            this.state.equipmentParams.weaponElement1,
+            this.weapon.elementType
         );
         const skillEffect = this.skillSet.getSkillEffect(
-            this.state.equipmentParams.weaponOffenseValue,
-            this.state.equipmentParams.weaponElement1,
-            this.state.equipmentParams.weaponElementValue1,
+            this.weapon.offenseValue,
+            this.weapon.elementType,
+            this.weapon.elementValue,
         );
         return (
             <div>
                 <EquipmentSetting
-                    handleUpdate={(params) => this.handleEquipmentParamUpdate(params)}
-                    equipmentParams={this.state.equipmentParams}
+                    onChangeWeaponType={(type) => {this.onChangeWeaponType(type);}}
+                    weaponParam={this.weapon}
+                    onChangeWeapon={(weaponID) => {this.onChangeWeapon(weaponID);}}
+                    onChangeWeaponParam={(ov, cr, et, ev) => {this.onChangeWeaponParam(ov, cr, et, ev);}}
                     skillInfoList={this.skillSet.getSkillInfoList()}
                     onAddSkill={(skillID) => { this.skillSet.addSkill(skillID); this.onUpdateSkills(); }}
                     onSetSkillLevel={(skillID, level) => { this.skillSet.setSkillLevel(skillID, level); this.onUpdateSkills(); }}
@@ -101,7 +108,7 @@ class DamageSimulator extends Component {
                     onToggleSkillActivate={(skillID, enable) => { this.skillSet.setSkillEnable(skillID, enable), this.onUpdateSkills(); }}
                 />
                 <ResultArea
-                    equipmentParams={this.state.equipmentParams}
+                    weapon={this.weapon}
                     preQuestParams={this.state.preQuestParams}
                     inQuestParams={this.state.inQuestParams}
                     dragonSkillEffect={dragonSkillEffect}
