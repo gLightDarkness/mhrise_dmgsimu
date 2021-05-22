@@ -12,20 +12,11 @@ class ResultArea extends Component {
             monsterID: 0,
             motionID: 0,
             sharpness: 1,
-            equipmentParams: props.equipmentParams,
             preQuestParams: props.preQuestParams,
             inQuestParams: props.inQuestParams,
         };
-        this.resultObj = {
-            motionValue: 0,
-            physicalType: 0,
-            offenseValue: 0,
-            elementType: 0,
-            elementValue: 0,
-            criticalRate: 0,
-            criticalPhysicalRate: 0,
-            criticalElementRate: 0,
-        };
+        this.currentWeaponType = props.weapon.type;
+        this.currentWeaponID = props.weapon.weaponID;
     }
 
     onChangeMonster(monsterID) {
@@ -40,24 +31,19 @@ class ResultArea extends Component {
         this.setState({ sharpness: id });
     }
 
-    calcResultObj() {
-        let resultObj = {
-            motionValue: 0,
-            physicalType: 0,
-            offenseValue: 0,
-            elementType: 0,
-            elementValue: 0,
-            criticalRate: 0,
-            criticalPhysicalRate: 0,
-            criticalElementRate: 0,
-            sharpness: 0,
-        }
-        resultObj.offenseValue = this.state.equipmentParams.weaponOffenseValue;
-        this.resultObj = resultObj;
-    }
-
     render() {
-        this.calcResultObj();
+        if(this.currentWeaponType != this.props.weapon.type) {
+            this.currentWeaponType = this.props.weapon.type;
+            // render()の中ではsetState使わない
+            this.state.motionID = 0;
+        }
+
+        if(this.currentWeaponID != this.props.weapon.weaponID) {
+            this.currentWeaponID = this.props.weapon.weaponID;
+            // render()の中ではsetState使わない
+            this.state.sharpness = this.props.weapon.defaultSharpness;
+        }
+
         return (
             <div>
                 <div className="mb-3">
@@ -66,7 +52,7 @@ class ResultArea extends Component {
                     </h2>
                     <MonsterDropdown handleChange={(value) => { this.onChangeMonster(value) }} />
                     <MotionDropdown
-                        weaponType={this.state.equipmentParams.weaponType}
+                        weaponType={this.props.weapon.type}
                         handleChangeID={(motionID) => { this.onChangeMotionID(motionID) }}
                     />
                     <SharpnessButtons
@@ -76,10 +62,10 @@ class ResultArea extends Component {
                     />
                 </div>
                 <ResultTable
+                    weapon={this.props.weapon}
                     monsterID={this.state.monsterID}
                     motionID={this.state.motionID}
                     sharpnessID={this.state.sharpness}
-                    equipmentParams={this.state.equipmentParams}
                     preQuestParams={this.state.preQuestParams}
                     inQuestParams={this.state.inQuestParams}
                     dragonSkillEffect={this.props.dragonSkillEffect}
@@ -91,7 +77,7 @@ class ResultArea extends Component {
 }
 
 ResultArea.propTypes = {
-    equipmentParams: PropTypes.object,
+    weapon: PropTypes.object,
     preQuestParams: PropTypes.object,
     inQuestParams: PropTypes.object,
     dragonSkillEffect: PropTypes.object,
