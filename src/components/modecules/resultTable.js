@@ -43,13 +43,13 @@ const ResultTable = (props) => {
         return (mp.monster_id == props.monsterID);
     });
 
-    const offenseBaseValue = props.equipmentParams.weaponOffenseValue;
-    const criticalBaseRate = props.equipmentParams.weaponCriticalRate;
-    let elementType1 = props.equipmentParams.weaponElement1;
+    const offenseBaseValue = props.weapon.offenseValue;
+    const criticalBaseRate = props.weapon.criticalRate;
+    let elementType1 = props.weapon.elementType;
     if (props.dragonSkillEffect.addElementType != 0) {
         elementType1 = props.dragonSkillEffect.addElementType;
     }
-    const elementBaseValue1 = props.equipmentParams.weaponElementValue1;
+    const elementBaseValue1 = props.weapon.elementValue;
     let elementTypeStr1 = ElementType.filter((e) => {
         return e["id"] == elementType1;
     });
@@ -60,7 +60,7 @@ const ResultTable = (props) => {
     }
 
     let motion = Motion.filter((m) => {
-        return m["id"] == props.motionID;
+        return (m.weapon_type == props.weapon.type && m.id == props.motionID);
     });
     if (motion.length == 0) {
         return (
@@ -238,9 +238,7 @@ const ResultTable = (props) => {
         let griefBladeCriticalProbability = 0;
         let griefBladeCriticalCoeff = 1;
         if (criticalPartRate < 0) {
-            console.log("bad critical");
             let griefBladeCriticalEffect = props.dragonSkillEffect.spSkills.find((eff) => (eff.id == Defines.SP_DRAGON_SKILL_ID.GRIEF_BLADE_CRITICAL));
-            console.log(griefBladeCriticalEffect);
             if (griefBladeCriticalEffect) {
                 griefBladeCriticalProbability = griefBladeCriticalEffect.probability;
                 griefBladeCriticalCoeff *= griefBladeCriticalEffect.physical_damage_coeff;
@@ -330,7 +328,6 @@ const ResultTable = (props) => {
         ];
         results[part.parts_id] = resultOfPart;
     }
-    console.log(results);
 
     return (
         <div className="row">
@@ -445,7 +442,7 @@ ResultTable.propTypes = {
     monsterID: PropTypes.number,
     motionID: PropTypes.number,
     sharpnessID: PropTypes.number,
-    equipmentParams: PropTypes.object,
+    weapon: PropTypes.object,
     preQuestParams: PropTypes.object,
     inQuestParams: PropTypes.object,
     dragonSkillEffect: PropTypes.object,

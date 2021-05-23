@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DragonSkill from "../../data/dragon_skill.json"
+import DragonSkill from "../../data/dragon_skill"
+import DragonSkillSet from "../../data/dragon_skill_set"
 import Select from '../atoms/select';
 import Label from '../atoms/label';
 import Option from '../atoms/option';
@@ -8,22 +9,33 @@ import Button from '../atoms/button';
 import Ul from '../atoms/ul';
 import Li from '../atoms/li';
 
-class DragonSkillFree extends Component {
+class DragonSkillSetting extends Component {
     constructor(props) {
         super(props);
         this.currentSkillID = 0;
-
-        this.MAX_SLOT_NUM = 3; // 最大セット可能数
     }
 
     getSelectableSkillList() {
         const baseSkillList = [{ "id": 0, "name": "選択してください" }];
-        let list = baseSkillList.concat(DragonSkill);
-        list = list.filter((s) => {
-            const info = this.props.skillInfoList.find((i) => i.id == s.id);
+        let setList = [];
+        if (this.props.skillSetID != 0) {
+            setList = DragonSkillSet.filter((set) => {
+                return (set.set_id == this.props.skillSetID);
+            });
+        }
+        let skillList = DragonSkill.concat();
+        skillList = skillList.filter((skill) => {
+            if (this.props.skillSetID != 0) {
+                const inSet = setList.find((set) => (set.d_skill_id == skill.id));
+                if (!inSet) {
+                    return false;
+                }
+            }
+            const info = this.props.skillInfoList.find((i) => i.id == skill.id);
             return (!info);
         });
-        return list;
+        const selectableList = baseSkillList.concat(skillList);
+        return selectableList;
     }
 
     onSelectSkill(skillID) {
@@ -35,7 +47,7 @@ class DragonSkillFree extends Component {
         if (this.currentSkillID == 0) {
             return;
         }
-        if (this.props.skillInfoList.length >= this.MAX_SLOT_NUM) {
+        if (this.props.skillInfoList.length >= this.props.skillSetNum) {
             return;
         }
         this.props.onAddSkill(this.currentSkillID);
@@ -71,8 +83,8 @@ class DragonSkillFree extends Component {
                                     </div>
                                     <div className="col-4">
                                         <Button type="button"
-                                                onClick={() => { this.props.onRemoveSkill(item.id); }}
-                                                className="btn btn-danger">
+                                            onClick={() => { this.props.onRemoveSkill(item.id); }}
+                                            className="btn btn-danger">
                                             削除
                                         </Button>
                                     </div>
@@ -86,10 +98,12 @@ class DragonSkillFree extends Component {
     }
 }
 
-DragonSkillFree.propTypes = {
+DragonSkillSetting.propTypes = {
     skillInfoList: PropTypes.array,
     onAddSkill: PropTypes.func,
     onRemoveSkill: PropTypes.func,
+    skillSetID: PropTypes.number,
+    skillSetNum: PropTypes.number,
 }
 
-export default DragonSkillFree;
+export default DragonSkillSetting;
