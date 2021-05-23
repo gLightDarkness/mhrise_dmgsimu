@@ -53,7 +53,7 @@ class SkillSet {
         return ret;
     }
 
-    getSkillEffect(baseOffenseValue, elementType, baseElementValue) {
+    getSkillEffect(elementType, baseElementValue) {
         // Wish: 副属性未対応
         let ret = {
             addOffenseValue: 0,
@@ -85,9 +85,6 @@ class SkillSet {
 
             if (effect.offense_value != "") {
                 ret.addOffenseValue += effect.offense_value;
-            }
-            if (effect.base_offense_coeff != "") {
-                ret.addOffenseValue += ((effect.base_offense_coeff - 1) * baseOffenseValue);
             }
             if (effect.offense_coeff != "") {
                 ret.offenseCoeff *= effect.offense_coeff;

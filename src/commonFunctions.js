@@ -26,5 +26,14 @@ class CommonFunctions {
         }
         return 0;
     }
+
+    static round89(value) {
+        let integerValue = Math.floor(value);
+        let decimalValue = value - integerValue;
+        if(Math.floor(decimalValue * 10) <= 8) {
+            return integerValue;
+        }
+        return (integerValue + 1);
+    }
 }
 export default CommonFunctions;

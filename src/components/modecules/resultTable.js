@@ -43,7 +43,6 @@ const ResultTable = (props) => {
         return (mp.monster_id == props.monsterID);
     });
 
-    const offenseBaseValue = props.weapon.offenseValue;
     const criticalBaseRate = props.weapon.criticalRate;
     let elementType1 = props.weapon.elementType;
     if (props.dragonSkillEffect.addElementType != 0) {
@@ -88,20 +87,23 @@ const ResultTable = (props) => {
     const sharpnessElementRate = sharpness.element_rate * sharpnessCoeff;
 
     // 攻撃力計算
-    let offenseValue = offenseBaseValue;
-    offenseValue += props.dragonSkillEffect.addOffenseValue;
-    offenseValue += props.skillEffect.addOffenseValue;
-    offenseValue += props.preQuestParams.addOffenceValue;
-    offenseValue += props.inQuestParams.addOffenceValue;
+    let offenseValue = props.weapon.offenseValue;
     offenseValue *= props.dragonSkillEffect.offenseCoeff;
-    offenseValue *= props.skillEffect.offenseCoeff;
-    offenseValue *= props.inQuestParams.mulOffenceCoeff;
+    offenseValue += props.dragonSkillEffect.addOffenseValue;
     // 百竜スキル: 無属性強化
     const normalBoostEffect = props.dragonSkillEffect.spSkills.find((eff) => (eff.id == Defines.SP_DRAGON_SKILL_ID.NORMAL_ATTACK_BOOST));
     if (normalBoostEffect) {
         offenseValue += normalBoostEffect.offense_value;
     }
-    offenseValue = Math.floor(offenseValue);
+
+    offenseValue *= props.skillEffect.offenseCoeff;
+    offenseValue *= props.inQuestParams.mulOffenceCoeff;
+
+    offenseValue += props.skillEffect.addOffenseValue;
+    offenseValue += props.preQuestParams.addOffenceValue;
+    offenseValue += props.inQuestParams.addOffenceValue;
+
+    offenseValue = CommonFunctions.round89(offenseValue);
 
     // 会心率計算
     let criticalRate = criticalBaseRate;
