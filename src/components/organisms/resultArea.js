@@ -11,11 +11,8 @@ class ResultArea extends Component {
         this.state = {
             monsterID: 0,
             motionID: 0,
-            sharpness: 1,
-            preQuestParams: props.preQuestParams,
-            inQuestParams: props.inQuestParams,
         };
-        this.currentWeaponType = props.weapon.type;
+        this.sharpness = props.weapon.defaultSharpness;
         this.currentWeaponID = props.weapon.weaponID;
     }
 
@@ -28,20 +25,14 @@ class ResultArea extends Component {
     }
 
     onChangeSharpness(id) {
-        this.setState({ sharpness: id });
+        this.sharpness = id;
+        this.forceUpdate();
     }
 
     render() {
-        if(this.currentWeaponType != this.props.weapon.type) {
-            this.currentWeaponType = this.props.weapon.type;
-            // render()の中ではsetState使わない
-            this.state.motionID = 0;
-        }
-
         if(this.currentWeaponID != this.props.weapon.weaponID) {
             this.currentWeaponID = this.props.weapon.weaponID;
-            // render()の中ではsetState使わない
-            this.state.sharpness = this.props.weapon.defaultSharpness;
+            this.sharpness = this.props.weapon.defaultSharpness;
         }
 
         return (
@@ -57,7 +48,7 @@ class ResultArea extends Component {
                     />
                     <SharpnessButtons
                         type="button"
-                        currentID={this.state.sharpness}
+                        currentID={this.sharpness}
                         handleChange={(value) => { this.onChangeSharpness(value) }}
                     />
                 </div>
@@ -65,9 +56,9 @@ class ResultArea extends Component {
                     weapon={this.props.weapon}
                     monsterID={this.state.monsterID}
                     motionID={this.state.motionID}
-                    sharpnessID={this.state.sharpness}
-                    preQuestParams={this.state.preQuestParams}
-                    inQuestParams={this.state.inQuestParams}
+                    sharpnessID={this.sharpness}
+                    preQuestParams={this.props.preQuestParams}
+                    inQuestParams={this.props.inQuestParams}
                     dragonSkillEffect={this.props.dragonSkillEffect}
                     skillEffect={this.props.skillEffect}
                 />

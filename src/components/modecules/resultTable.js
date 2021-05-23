@@ -60,7 +60,7 @@ const ResultTable = (props) => {
     }
 
     let motion = Motion.filter((m) => {
-        return m["id"] == props.motionID;
+        return (m.weapon_type == props.weapon.type && m.id == props.motionID);
     });
     if (motion.length == 0) {
         return (
