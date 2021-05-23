@@ -71,7 +71,6 @@ class DamageSimulator extends Component {
             this.weapon.elementType
         );
         const skillEffect = this.skillSet.getSkillEffect(
-            this.weapon.offenseValue,
             this.weapon.elementType,
             this.weapon.elementValue,
         );
