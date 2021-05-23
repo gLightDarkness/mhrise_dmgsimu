@@ -8,6 +8,7 @@ import { ActiveSkillSetting } from '../organisms/activeSkillSetting';
 import DragonSkillSet from '../../models/dragonSkillSet';
 import { ActiveDragonSkillSetting } from '../organisms/activeDragonSkillSetting';
 import WeaponParam from '../../models/weaponParam';
+import UpdateHistory from '../organisms/updateHistory';
 
 class DamageSimulator extends Component {
     constructor(props) {
@@ -114,6 +115,7 @@ class DamageSimulator extends Component {
                     dragonSkillEffect={dragonSkillEffect}
                     skillEffect={skillEffect}
                 />
+                <UpdateHistory/>
             </div>
         );
     }
