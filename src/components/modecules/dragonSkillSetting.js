@@ -26,7 +26,6 @@ class DragonSkillSetting extends Component {
         let skillList = DragonSkill.concat();
         skillList = skillList.filter((skill) => {
             if (this.props.skillSetID != 0) {
-                console.log(this.props.skillSetID);
                 const inSet = setList.find((set) => (set.d_skill_id == skill.id));
                 if (!inSet) {
                     return false;
