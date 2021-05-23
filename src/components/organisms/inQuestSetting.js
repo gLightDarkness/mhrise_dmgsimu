@@ -14,6 +14,8 @@ class InQuestSetting extends Component {
         this.param = {
             isPowerPowder: false,
             isPowerSeed: false,
+            isCatDrum: false,
+            isCatYell: false,
             powerDrugType: 0,
             catSkillType: 0,
             soulBirdAddValue: 0,
@@ -42,7 +44,7 @@ class InQuestSetting extends Component {
 
     calcMulOffenceCoeff() {
         let coeff = 1;
-        if (this.param.catSkillType == 1) {
+        if (this.param.isCatDrum) {
             coeff *= 1.05;
         }
 
@@ -56,7 +58,7 @@ class InQuestSetting extends Component {
         if (this.param.isAmikiriDragonFly) {
             rate += 50;
         }
-        if (this.param.catSkillType == 2) {
+        if (this.param.isCatYell) {
             rate += 30;
         }
 
@@ -74,6 +76,16 @@ class InQuestSetting extends Component {
         this.calcAddOffenceValue();
     }
 
+    onToggleCatDrum(enable) {
+        this.param.isCatDrum = enable;
+        this.calcMulOffenceCoeff();
+    }
+
+    onToggleCatYell(enable) {
+        this.param.isCatYell = enable;
+        this.calcAddCriticalRate();
+    }
+
     onToggleHomuraButterFly(enable) {
         this.param.isHomuraButterFly = enable;
         this.calcAddOffenceValue();
@@ -87,12 +99,6 @@ class InQuestSetting extends Component {
     onSelectPowerDrug(opt) {
         this.param.powerDrugType = parseInt(opt);
         this.calcAddOffenceValue();
-    }
-
-    onSelectCatSkill(opt) {
-        this.param.catSkillType = parseInt(opt);
-        this.calcAddCriticalRate();
-        this.calcMulOffenceCoeff();
     }
 
     onUpdateSoulVird(value) {
@@ -141,15 +147,23 @@ class InQuestSetting extends Component {
                         </Select>
                     </div>
                 </div>
-                <div className="row mb-3">
-                    <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">ｵﾄﾓｱｲﾙｰ: </Label>
-                    <div className="col-sm-5 col-5">
-                        <Select onChange={(ev) => { this.onSelectCatSkill(ev.target.value) }}>
-                            <Option value={0}>なし</Option>
-                            <Option value={1}>強化太鼓の技</Option>
-                            <Option value={2}>強化咆哮の技</Option>
-                        </Select>
-                    </div>
+                <div className="form-check">
+                    <CheckboxInput
+                        id="CatDrum"
+                        checked={this.param.isCatDrum}
+                        onChange={(ev) => { this.onToggleCatDrum(ev.target.checked) }}
+                        className="form-check-input"
+                    />
+                    <Label className="form-check-label" for="CatDrum">強化太鼓の技</Label>
+                </div>
+                <div className="form-check">
+                    <CheckboxInput
+                        id="CatYell"
+                        checked={this.param.isCatYell}
+                        onChange={(ev) => { this.onToggleCatYell(ev.target.checked) }}
+                        className="form-check-input"
+                    />
+                    <Label className="form-check-label" for="CatYell">強化咆哮の技</Label>
                 </div>
                 <div>
                     <InQuestRangeInput
