@@ -1,6 +1,7 @@
 import React from 'react';
 import UpdateHistories from '../../data/update_histories'
-import Label from '../atoms/label';
+import Li from '../atoms/li';
+import Ul from '../atoms/ul';
 
 const UpdateHistory = () => {
     let histories = UpdateHistories.map((h) => {
@@ -11,16 +12,19 @@ const UpdateHistory = () => {
         }
         return ret;
     });
+    histories = histories.reverse();
     return (
         <div>
             <h4>
                 ●更新履歴
             </h4>
-            {histories.map((history) =>
-            <Label key={history.id}>
-                {history.date.toLocaleDateString()} {history.description}
-            </Label>
-            )}
+            <Ul>
+                {histories.map((history) =>
+                <Li key={history.id}>
+                    {history.date.toLocaleDateString()} {history.description}
+                </Li>
+                )}
+            </Ul>
         </div>
     );
 }

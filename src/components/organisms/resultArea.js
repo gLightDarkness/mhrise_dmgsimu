@@ -10,10 +10,11 @@ class ResultArea extends Component {
         super(props);
         this.state = {
             monsterID: 0,
-            motionID: 0,
         };
         this.sharpness = props.weapon.defaultSharpness;
+        this.motionID = 0;
         this.currentWeaponID = props.weapon.weaponID;
+        this.currentWeaponType = props.weapon.type;
     }
 
     onChangeMonster(monsterID) {
@@ -21,7 +22,8 @@ class ResultArea extends Component {
     }
 
     onChangeMotionID(id) {
-        this.setState({ motionID: id });
+        this.motionID = id;
+        this.forceUpdate();
     }
 
     onChangeSharpness(id) {
@@ -35,6 +37,11 @@ class ResultArea extends Component {
             this.sharpness = this.props.weapon.defaultSharpness;
         }
 
+        if(this.currentWeaponType != this.props.weapon.type) {
+            this.currentWeaponType = this.props.weapon.type;
+            this.motionID = 0;
+        }
+
         return (
             <div>
                 <div className="mb-3">
@@ -45,6 +52,7 @@ class ResultArea extends Component {
                     <MotionDropdown
                         weaponType={this.props.weapon.type}
                         handleChangeID={(motionID) => { this.onChangeMotionID(motionID) }}
+                        currentID={this.motionID}
                     />
                     <SharpnessButtons
                         type="button"
@@ -55,7 +63,7 @@ class ResultArea extends Component {
                 <ResultTable
                     weapon={this.props.weapon}
                     monsterID={this.state.monsterID}
-                    motionID={this.state.motionID}
+                    motionID={this.motionID}
                     sharpnessID={this.sharpness}
                     preQuestParams={this.props.preQuestParams}
                     inQuestParams={this.props.inQuestParams}

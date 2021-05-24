@@ -37,6 +37,14 @@ class InQuestSetting extends Component {
         if (this.param.isHomuraButterFly) {
             value += 25;
         }
+        switch(this.param.powerDrugType) {
+            case 1:
+                value += 5;
+                break;
+            case 2:
+                value += 7;
+                break;
+        }
 
         this.inQuestParams.addOffenceValue = value;
         this.handleUpdate(this.inQuestParams);
@@ -140,7 +148,10 @@ class InQuestSetting extends Component {
                 <div className="row mb-3">
                     <Label className="col-xxl-1 col-md-2 col-sm-3 col-3 col-form-label mb-1">鬼人薬: </Label>
                     <div className="col-sm-5 col-5">
-                        <Select onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}>
+                        <Select
+                            onChange={(ev) => { this.onSelectPowerDrug(ev.target.value) }}
+                            currentValue={this.param.powerDrugType.toString()}
+                        >
                             <Option value={0}>なし</Option>
                             <Option value={1}>鬼人薬</Option>
                             <Option value={2}>鬼人薬グレート</Option>
