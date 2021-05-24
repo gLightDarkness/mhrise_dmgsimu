@@ -56,6 +56,7 @@ const WeaponParamManualSetting = (props) => {
                         elementValue,
                     )
                 }}
+                currentID={elementType}
             />
 
             <div className="row mb-3">

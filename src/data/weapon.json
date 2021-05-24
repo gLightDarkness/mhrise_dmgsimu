@@ -395,7 +395,7 @@
 		"name": "セイバートゥース",
 		"offense_value": 170,
 		"default_sharpness": 5,
-		"element_type": 3,
+		"element_type": 4,
 		"element_value": 26,
 		"critical_rate": 40,
 		"dragon_skill_set_id": 27,
