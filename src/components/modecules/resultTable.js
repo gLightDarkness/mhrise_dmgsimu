@@ -117,11 +117,11 @@ const ResultTable = (props) => {
 
     // 属性値計算
     let elementValue1 = elementBaseValue1;
-    elementValue1 += props.dragonSkillEffect.addElementValue;
-    elementValue1 += props.skillEffect.addElementValue;
     elementValue1 *= props.dragonSkillEffect.elementCoeff;
     elementValue1 *= props.skillEffect.elementCoeff;
-    elementValue1 = Math.floor(elementValue1);
+    elementValue1 += props.dragonSkillEffect.addElementValue;
+    elementValue1 += props.skillEffect.addElementValue;
+    elementValue1 = CommonFunctions.round89(elementValue1);
 
     // ダメージ係数
     let coeff = 1;

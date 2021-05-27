@@ -97,6 +97,9 @@ class DragonSkillSet {
                 if (skill.info.element_value != "") {
                     ret.addElementValue += skill.info.element_value;
                 }
+                if (skill.info.element_coeff != "") {
+                    ret.elementCoeff *= skill.info.element_coeff;
+                }
             }
             if (skill.info.physical_damage_coeff != "") {
                 ret.physicalDamageCoeff = skill.info.physical_damage_coeff;

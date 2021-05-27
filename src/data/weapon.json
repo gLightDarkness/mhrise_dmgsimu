@@ -131,6 +131,201 @@
 	},
 	{
 		"id": 11,
+		"weapon_type": 2,
+		"name": "カムラノ忍刀",
+		"offense_value": 190,
+		"default_sharpness": 5,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 12,
+		"weapon_type": 2,
+		"name": "王牙力【伏雷】",
+		"offense_value": 200,
+		"default_sharpness": 5,
+		"element_type": 3,
+		"element_value": 34,
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 13,
+		"weapon_type": 2,
+		"name": "暁の刺刀シルカヴァレ",
+		"offense_value": 170,
+		"default_sharpness": 5,
+		"element_type": 1,
+		"element_value": 26,
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 14,
+		"weapon_type": 2,
+		"name": "白兎刀【氷棘】",
+		"offense_value": 180,
+		"default_sharpness": 4,
+		"element_type": 4,
+		"element_value": 15,
+		"critical_rate": -10,
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 15,
+		"weapon_type": 2,
+		"name": "インペリアルソード",
+		"offense_value": 140,
+		"default_sharpness": 5,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": 10,
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 16,
+		"weapon_type": 2,
+		"name": "ボルボカステッルム",
+		"offense_value": 200,
+		"default_sharpness": 4,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": -20,
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 17,
+		"weapon_type": 2,
+		"name": "タイタンマカエラ",
+		"offense_value": 180,
+		"default_sharpness": 4,
+		"element_type": 1,
+		"element_value": 22,
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 18,
+		"weapon_type": 2,
+		"name": "D=バイダー",
+		"offense_value": 180,
+		"default_sharpness": 5,
+		"element_type": 2,
+		"element_value": 48,
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 19,
+		"weapon_type": 2,
+		"name": "鉄鋸刀【千切】",
+		"offense_value": 180,
+		"default_sharpness": 5,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 20,
+		"weapon_type": 2,
+		"name": "一虎刀【飢刃】",
+		"offense_value": 230,
+		"default_sharpness": 6,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": -20,
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 21,
+		"weapon_type": 2,
+		"name": "狐刀カカルクモナキⅡ",
+		"offense_value": 190,
+		"default_sharpness": 5,
+		"element_type": 2,
+		"element_value": 19,
+		"critical_rate": 10,
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 22,
+		"weapon_type": 2,
+		"name": "夜刀【月影】",
+		"offense_value": 180,
+		"default_sharpness": 6,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": 40,
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 23,
+		"weapon_type": 2,
+		"name": "鬼斬破",
+		"offense_value": 180,
+		"default_sharpness": 4,
+		"element_type": 3,
+		"element_value": 27,
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 24,
+		"weapon_type": 2,
+		"name": "ピコ・プリセイフ",
+		"offense_value": 160,
+		"default_sharpness": 5,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": 20,
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 25,
+		"weapon_type": 2,
+		"name": "凍刃【氷華】",
+		"offense_value": 210,
+		"default_sharpness": 5,
+		"element_type": 4,
+		"element_value": 27,
+		"critical_rate": "",
+		"dragon_skill_set_id": "",
+		"dragon_skill_slot": "",
+		"finally": 1
+	},
+	{
+		"id": 26,
 		"weapon_type": 7,
 		"name": "カムラノ忍槍",
 		"offense_value": 190,
@@ -143,7 +338,7 @@
 		"finally": 1
 	},
 	{
-		"id": 12,
+		"id": 27,
 		"weapon_type": 7,
 		"name": "ゴシャガドシュ",
 		"offense_value": 230,
@@ -156,7 +351,7 @@
 		"finally": 1
 	},
 	{
-		"id": 13,
+		"id": 28,
 		"weapon_type": 7,
 		"name": "きみがきる笠槍の突刺",
 		"offense_value": 180,
@@ -169,7 +364,7 @@
 		"finally": 1
 	},
 	{
-		"id": 14,
+		"id": 29,
 		"weapon_type": 7,
 		"name": "蛇槍【ヴリトラ】",
 		"offense_value": 130,
@@ -182,7 +377,7 @@
 		"finally": 1
 	},
 	{
-		"id": 15,
+		"id": 30,
 		"weapon_type": 7,
 		"name": "蛙式・突キダシ",
 		"offense_value": 200,
@@ -195,7 +390,7 @@
 		"finally": 1
 	},
 	{
-		"id": 16,
+		"id": 31,
 		"weapon_type": 7,
 		"name": "風鎌槍トトユリア",
 		"offense_value": 140,
@@ -208,7 +403,7 @@
 		"finally": 1
 	},
 	{
-		"id": 17,
+		"id": 32,
 		"weapon_type": 7,
 		"name": "氷鮫鋭鉾",
 		"offense_value": 150,
@@ -221,7 +416,7 @@
 		"finally": 1
 	},
 	{
-		"id": 18,
+		"id": 33,
 		"weapon_type": 7,
 		"name": "ランパート",
 		"offense_value": 190,
@@ -234,7 +429,7 @@
 		"finally": 1
 	},
 	{
-		"id": 19,
+		"id": 34,
 		"weapon_type": 7,
 		"name": "エルダーバベル",
 		"offense_value": 200,
@@ -247,7 +442,7 @@
 		"finally": 1
 	},
 	{
-		"id": 20,
+		"id": 35,
 		"weapon_type": 7,
 		"name": "ヴェノムスクィード",
 		"offense_value": 220,
@@ -260,7 +455,7 @@
 		"finally": 1
 	},
 	{
-		"id": 21,
+		"id": 36,
 		"weapon_type": 7,
 		"name": "暗夜槍【黒雨】",
 		"offense_value": 180,
@@ -273,7 +468,7 @@
 		"finally": 1
 	},
 	{
-		"id": 22,
+		"id": 37,
 		"weapon_type": 7,
 		"name": "撃竜槍【吽】",
 		"offense_value": 210,
@@ -286,7 +481,7 @@
 		"finally": 1
 	},
 	{
-		"id": 23,
+		"id": 38,
 		"weapon_type": 7,
 		"name": "飛雷槍【御手杵】",
 		"offense_value": 190,
@@ -299,7 +494,7 @@
 		"finally": 1
 	},
 	{
-		"id": 24,
+		"id": 39,
 		"weapon_type": 7,
 		"name": "暁の突槍シルリッター",
 		"offense_value": 210,
@@ -312,7 +507,7 @@
 		"finally": 1
 	},
 	{
-		"id": 25,
+		"id": 40,
 		"weapon_type": 7,
 		"name": "削槍ボルボロス",
 		"offense_value": 200,
@@ -325,7 +520,7 @@
 		"finally": 1
 	},
 	{
-		"id": 26,
+		"id": 41,
 		"weapon_type": 7,
 		"name": "ギガドリルランス",
 		"offense_value": 210,
@@ -338,7 +533,7 @@
 		"finally": 1
 	},
 	{
-		"id": 27,
+		"id": 42,
 		"weapon_type": 7,
 		"name": "ラングスイープ",
 		"offense_value": 160,
@@ -351,7 +546,7 @@
 		"finally": 1
 	},
 	{
-		"id": 28,
+		"id": 43,
 		"weapon_type": 7,
 		"name": "ヒートスティンガー",
 		"offense_value": 190,
@@ -364,7 +559,7 @@
 		"finally": 1
 	},
 	{
-		"id": 29,
+		"id": 44,
 		"weapon_type": 7,
 		"name": "バーバリアンファング",
 		"offense_value": 200,
@@ -377,7 +572,7 @@
 		"finally": 1
 	},
 	{
-		"id": 30,
+		"id": 45,
 		"weapon_type": 7,
 		"name": "ティガスティンガーⅡ",
 		"offense_value": 220,
@@ -387,10 +582,23 @@
 		"critical_rate": -15,
 		"dragon_skill_set_id": 26,
 		"dragon_skill_slot": 1,
+		"finally": 0
+	},
+	{
+		"id": 46,
+		"weapon_type": 7,
+		"name": "轟槍【独虎】",
+		"offense_value": 230,
+		"default_sharpness": 6,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": -15,
+		"dragon_skill_set_id": 26,
+		"dragon_skill_slot": 1,
 		"finally": 1
 	},
 	{
-		"id": 31,
+		"id": 47,
 		"weapon_type": 7,
 		"name": "セイバートゥース",
 		"offense_value": 170,
@@ -403,7 +611,7 @@
 		"finally": 1
 	},
 	{
-		"id": 32,
+		"id": 48,
 		"weapon_type": 7,
 		"name": "毒妖槍ヒルヴラリギ",
 		"offense_value": 190,
@@ -416,7 +624,7 @@
 		"finally": 1
 	},
 	{
-		"id": 33,
+		"id": 49,
 		"weapon_type": 7,
 		"name": "プロミネンスピラー",
 		"offense_value": 190,
@@ -429,7 +637,7 @@
 		"finally": 1
 	},
 	{
-		"id": 34,
+		"id": 50,
 		"weapon_type": 7,
 		"name": "スパイラルボア",
 		"offense_value": 160,
@@ -442,7 +650,7 @@
 		"finally": 1
 	},
 	{
-		"id": 35,
+		"id": 51,
 		"weapon_type": 7,
 		"name": "リノハスター",
 		"offense_value": 190,
@@ -455,7 +663,7 @@
 		"finally": 1
 	},
 	{
-		"id": 36,
+		"id": 52,
 		"weapon_type": 7,
 		"name": "角槍ディアブロス",
 		"offense_value": 250,
@@ -468,7 +676,7 @@
 		"finally": 1
 	},
 	{
-		"id": 37,
+		"id": 53,
 		"weapon_type": 7,
 		"name": "ピコ・プリピック",
 		"offense_value": 160,
@@ -481,7 +689,7 @@
 		"finally": 1
 	},
 	{
-		"id": 38,
+		"id": 54,
 		"weapon_type": 7,
 		"name": "王牙槍【若雷】",
 		"offense_value": 200,
@@ -494,7 +702,7 @@
 		"finally": 1
 	},
 	{
-		"id": 39,
+		"id": 55,
 		"weapon_type": 7,
 		"name": "グレイトアズール",
 		"offense_value": 180,
@@ -507,7 +715,7 @@
 		"finally": 1
 	},
 	{
-		"id": 40,
+		"id": 56,
 		"weapon_type": 7,
 		"name": "禍ツ槍ノ幽鬼ラコレー",
 		"offense_value": 200,
@@ -520,7 +728,7 @@
 		"finally": 1
 	},
 	{
-		"id": 41,
+		"id": 57,
 		"weapon_type": 7,
 		"name": "鬼槍ラージャンⅡ",
 		"offense_value": 210,
@@ -533,20 +741,33 @@
 		"finally": 1
 	},
 	{
-		"id": 42,
+		"id": 58,
 		"weapon_type": 7,
 		"name": "あかしまの神槍Ⅱ",
 		"offense_value": 190,
 		"default_sharpness": 5,
-		"element_type": 6,
+		"element_type": 5,
 		"element_value": 9,
 		"critical_rate": "",
 		"dragon_skill_set_id": 36,
 		"dragon_skill_slot": 1,
+		"finally": ""
+	},
+	{
+		"id": 59,
+		"weapon_type": 7,
+		"name": "神淵ノ風穿チ",
+		"offense_value": 210,
+		"default_sharpness": 5,
+		"element_type": 5,
+		"element_value": 11,
+		"critical_rate": "",
+		"dragon_skill_set_id": 44,
+		"dragon_skill_slot": 1,
 		"finally": 1
 	},
 	{
-		"id": 43,
+		"id": 60,
 		"weapon_type": 7,
 		"name": "かんなりの神槍Ⅰ",
 		"offense_value": 180,
@@ -556,10 +777,23 @@
 		"critical_rate": "",
 		"dragon_skill_set_id": 37,
 		"dragon_skill_slot": 1,
+		"finally": ""
+	},
+	{
+		"id": 61,
+		"weapon_type": 7,
+		"name": "神源ノ雷穿チ",
+		"offense_value": 190,
+		"default_sharpness": 5,
+		"element_type": 3,
+		"element_value": 38,
+		"critical_rate": "",
+		"dragon_skill_set_id": 45,
+		"dragon_skill_slot": 1,
 		"finally": 1
 	},
 	{
-		"id": 44,
+		"id": 62,
 		"weapon_type": 7,
 		"name": "爆鱗槍バゼルミニアド",
 		"offense_value": 220,
@@ -572,7 +806,7 @@
 		"finally": 1
 	},
 	{
-		"id": 45,
+		"id": 63,
 		"weapon_type": 7,
 		"name": "鋼氷槍Ⅰ",
 		"offense_value": 180,
@@ -582,10 +816,23 @@
 		"critical_rate": 10,
 		"dragon_skill_set_id": 39,
 		"dragon_skill_slot": 1,
+		"finally": ""
+	},
+	{
+		"id": 64,
+		"weapon_type": 7,
+		"name": "テリオス＝ダオラ",
+		"offense_value": 190,
+		"default_sharpness": 6,
+		"element_type": 4,
+		"element_value": 36,
+		"critical_rate": 10,
+		"dragon_skill_set_id": 46,
+		"dragon_skill_slot": 1,
 		"finally": 1
 	},
 	{
-		"id": 46,
+		"id": 65,
 		"weapon_type": 7,
 		"name": "テオ＝ハウルⅠ",
 		"offense_value": 190,
@@ -595,10 +842,36 @@
 		"critical_rate": "",
 		"dragon_skill_set_id": 40,
 		"dragon_skill_slot": 1,
+		"finally": ""
+	},
+	{
+		"id": 66,
+		"weapon_type": 7,
+		"name": "テオ＝ロア",
+		"offense_value": 200,
+		"default_sharpness": 5,
+		"element_type": "",
+		"element_value": "",
+		"critical_rate": "",
+		"dragon_skill_set_id": 47,
+		"dragon_skill_slot": 1,
 		"finally": 1
 	},
 	{
-		"id": 47,
+		"id": 67,
+		"weapon_type": 7,
+		"name": "龍天槍エンカラモズィ",
+		"offense_value": 180,
+		"default_sharpness": 6,
+		"element_type": 5,
+		"element_value": 35,
+		"critical_rate": "",
+		"dragon_skill_set_id": 48,
+		"dragon_skill_slot": 1,
+		"finally": 1
+	},
+	{
+		"id": 68,
 		"weapon_type": 7,
 		"name": "マイティパラッシュ",
 		"offense_value": 190,
@@ -611,7 +884,7 @@
 		"finally": 1
 	},
 	{
-		"id": 48,
+		"id": 69,
 		"weapon_type": 7,
 		"name": "蠍槍アラクランツェ",
 		"offense_value": 170,
@@ -624,7 +897,7 @@
 		"finally": 1
 	},
 	{
-		"id": 49,
+		"id": 70,
 		"weapon_type": 7,
 		"name": "クラシーフレグランス",
 		"offense_value": 160,
