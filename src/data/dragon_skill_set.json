@@ -774,6 +774,12 @@
 		"d_skill_id": 37
 	},
 	{
+		"id": 133,
+		"set_id": 45,
+		"slot": 1,
+		"d_skill_id": 44
+	},
+	{
 		"id": 134,
 		"set_id": 46,
 		"slot": 1,

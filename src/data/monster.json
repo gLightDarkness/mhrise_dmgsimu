@@ -12,16 +12,26 @@
 	{
 		"id": 3,
 		"name": "クシャルダオラ",
-		"type_bits": ""
+		"type_bits": 4
 	},
 	{
 		"id": 4,
 		"name": "オオナズチ",
-		"type_bits": ""
+		"type_bits": 4
 	},
 	{
 		"id": 5,
 		"name": "テオ・テスカトル",
-		"type_bits": ""
+		"type_bits": 4
+	},
+	{
+		"id": 6,
+		"name": "百竜ノ淵源ナルハタタヒメ",
+		"type_bits": 4
+	},
+	{
+		"id": 7,
+		"name": "奇しき核耀のバルファルク",
+		"type_bits": 4
 	}
 ]
