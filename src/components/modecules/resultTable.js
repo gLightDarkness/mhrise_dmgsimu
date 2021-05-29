@@ -99,6 +99,16 @@ const ResultTable = (props) => {
     offenseValue *= props.skillEffect.offenseCoeff;
     offenseValue *= props.inQuestParams.mulOffenceCoeff;
 
+    // スキル: 鈍器使い
+    const bludgeonerEffect = props.skillEffect.spEffects.find((eff) => (eff.skill_id == Defines.SP_SKILL_ID.BLUDGEONER));
+    if (bludgeonerEffect) {
+        if (bludgeonerEffect.level <= 2 && sharpness.id <= 3) {
+            offenseValue *= bludgeonerEffect.offense_coeff;
+        } else if (bludgeonerEffect.level == 3 && sharpness.id <= 4) {
+            offenseValue *= bludgeonerEffect.offense_coeff;
+        }
+    }
+
     offenseValue += props.skillEffect.addOffenseValue;
     offenseValue += props.preQuestParams.addOffenceValue;
     offenseValue += props.inQuestParams.addOffenceValue;

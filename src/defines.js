@@ -16,6 +16,7 @@ export default Object.freeze({
     SP_SKILL_ID: {
         WEAKNESS_EXPLOIT: 11,
         MINDS_EYE: 12,
+        BLUDGEONER: 15,
     },
 
     SP_DRAGON_SKILL_ID: {

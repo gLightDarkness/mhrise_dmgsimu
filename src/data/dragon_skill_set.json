@@ -693,7 +693,7 @@
 		"id": 116,
 		"set_id": 37,
 		"slot": 1,
-		"d_skill_id": 29
+		"d_skill_id": 37
 	},
 	{
 		"id": 118,
@@ -748,5 +748,71 @@
 		"set_id": 43,
 		"slot": 1,
 		"d_skill_id": 38
+	},
+	{
+		"id": 129,
+		"set_id": 44,
+		"slot": 1,
+		"d_skill_id": 30
+	},
+	{
+		"id": 130,
+		"set_id": 44,
+		"slot": 1,
+		"d_skill_id": 37
+	},
+	{
+		"id": 131,
+		"set_id": 45,
+		"slot": 1,
+		"d_skill_id": 3
+	},
+	{
+		"id": 132,
+		"set_id": 45,
+		"slot": 1,
+		"d_skill_id": 37
+	},
+	{
+		"id": 134,
+		"set_id": 46,
+		"slot": 1,
+		"d_skill_id": 3
+	},
+	{
+		"id": 135,
+		"set_id": 46,
+		"slot": 1,
+		"d_skill_id": 8
+	},
+	{
+		"id": 137,
+		"set_id": 47,
+		"slot": 1,
+		"d_skill_id": 3
+	},
+	{
+		"id": 138,
+		"set_id": 47,
+		"slot": 1,
+		"d_skill_id": 39
+	},
+	{
+		"id": 140,
+		"set_id": 48,
+		"slot": 1,
+		"d_skill_id": 3
+	},
+	{
+		"id": 141,
+		"set_id": 48,
+		"slot": 1,
+		"d_skill_id": 35
+	},
+	{
+		"id": 142,
+		"set_id": 48,
+		"slot": 1,
+		"d_skill_id": 67
 	}
 ]

@@ -17,6 +17,10 @@ class SkillSetting extends Component {
 
     getSelectableSkillList() {
         const baseSkillList = [{ "id": 0, "name": "選択してください" }];
+        let skills = Skill.concat();
+        skills.sort((a, b) => {
+            return (a.order - b.order);
+        });
         let list = baseSkillList.concat(Skill);
         list = list.filter((s) => {
             const info = this.props.skillInfoList.find((i) => i.id == s.id);
